@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "MantenedorUsuario";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Modal para Guardar Usuarios *@
+<div class="modal fade" id="btnUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" value="0" id="idUsuario" style="display:none;"/>
+                <div class="form-group row">
+                    <label for="txtNombre" class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtNombre" placeholder="Nombre">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtApellido" class="col-sm-2 col-form-label">Apellido</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtApellido" placeholder="Apellido">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtxEmail" class="col-sm-2 col-form-label">Email</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control" id="txtEmail" placeholder="Email">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="txtPass" class="col-sm-2 col-form-label">Contraseña</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control" id="txtPass" placeholder="Contraseña">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="cboPerfil" class="col-sm-2 col-form-label">Perfil</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="cboPerfil">
+                            <option value="0">Seleecione un perfil</option>
+                            @{
+                                foreach (var item in ViewBag.perfil)
+                                {
+                                    <option value="@item.idPerfil">@item.nombre</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" style="float:left;" data-dismiss="modal" id="closeModalUsuario">Cerrar</button>
+                <button type="button" class="btn btn-success" onclick="GuardarUsuario()">Guardar Usuario</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Administrador de usuarios</h2>
+    </div>
+    <div class="col-md-6">
+        <button type="button" id="btnModalUsuario" class="btn btn-success" style="float:right;" data-toggle="modal" data-target="#btnUsuario" ><i class="fa fa-user"></i>  Nuevo Usuario</button>
+    </div>
+</div>
+
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-12">
+        <table class="table table-striped" style="width:100%" id="TbListarUsuario">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Perfil</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+        </table>
+    </div>    
+</div>
+

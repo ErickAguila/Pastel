@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "MantenedorCategoria";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@* Modal *@
+<div class="modal fade" id="openModalCategoria" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Categoria</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" value="0" id="txtIdCategoria" style="display:none;" />
+                <div class="form-group row">
+                    <label for="txtNombreCategoria" class="col-sm-2 col-form-label">Nombre</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="txtNombreCategoria" placeholder="Nombre categoria">
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="rbtnVigente" class="col-sm-2 col-form-label">Vigente</label>
+                    <div class="col-sm-10">
+                        <input type="checkbox" id="rbtnVigente"> Vigente
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" style="float:left;" data-dismiss="modal" id="closeModalCategoria">Cerrar</button>
+                <button type="button" class="btn btn-success" onclick="ActualizarCategoria()">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Administrador de Categorias</h2>
+    </div>
+    <div class="col-md-6">
+        <button type="button" id="btnGuardarCategoria" class="btn btn-success" style="float:right" onclick="GuardarCategoria()"><i class="fa fa-plus"></i>  Nueva categoria</button>
+    </div>
+</div>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-12">
+        <table class="table table-striped" style="width:50%" id="TbListarCategoria">
+            <thead>
+                <tr>
+                    <th>Nombre Categoria</th>
+                    <th>vigente</th>
+                    <th>Editar</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>

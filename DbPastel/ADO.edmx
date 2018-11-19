@@ -1,0 +1,365 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="pasteleriaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Boleta">
+          <Key>
+            <PropertyRef Name="idBoleta" />
+          </Key>
+          <Property Name="idBoleta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCliente" Type="int" />
+          <Property Name="idProducto" Type="int" />
+          <Property Name="idCategoria" Type="int" />
+          <Property Name="precio" Type="int" />
+          <Property Name="fechaCreacion" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="vigente" Type="bit" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="100" />
+          <Property Name="vigente" Type="bit" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idCategoria" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="precion" Type="int" />
+          <Property Name="descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="vigente" Type="bit" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idPerfil" Type="int" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="email" Type="varchar" MaxLength="100" />
+          <Property Name="pass" Type="varchar" MaxLength="50" />
+          <Property Name="vigente" Type="bit" />
+        </EntityType>
+        <Function Name="pa_BajarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_BajarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_GuardarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="nombreCategoria" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_GuardarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="nombreProducto" Type="varchar" Mode="In" />
+          <Parameter Name="precioProducto" Type="varchar" Mode="In" />
+          <Parameter Name="descripcion" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_ListarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_ListarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="nombre" Type="varchar" Mode="In" />
+          <Parameter Name="apellido" Type="varchar" Mode="In" />
+          <Parameter Name="email" Type="varchar" Mode="In" />
+          <Parameter Name="pass" Type="varchar" Mode="In" />
+          <Parameter Name="idPerfil" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="pasteleriaModelStoreContainer">
+          <EntitySet Name="Boleta" EntityType="Self.Boleta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="pasteleriaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Boleta">
+          <Key>
+            <PropertyRef Name="idBoleta" />
+          </Key>
+          <Property Name="idBoleta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCliente" Type="Int32" />
+          <Property Name="idProducto" Type="Int32" />
+          <Property Name="idCategoria" Type="Int32" />
+          <Property Name="precio" Type="Int32" />
+          <Property Name="fechaCreacion" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="Categoria">
+          <Key>
+            <PropertyRef Name="idCategoria" />
+          </Key>
+          <Property Name="idCategoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vigente" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Perfil">
+          <Key>
+            <PropertyRef Name="idPerfil" />
+          </Key>
+          <Property Name="idPerfil" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="vigente" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Producto">
+          <Key>
+            <PropertyRef Name="idProducto" />
+          </Key>
+          <Property Name="idProducto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idCategoria" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="precion" Type="Int32" />
+          <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="vigente" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="pasteleriaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Boleta" EntityType="Self.Boleta" />
+          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
+          <EntitySet Name="Perfil" EntityType="Self.Perfil" />
+          <EntitySet Name="Producto" EntityType="Self.Producto" />
+          <EntitySet Name="Usuario" EntityType="pasteleriaModel.Usuario" />
+          <FunctionImport Name="pa_Login" ReturnType="Collection(pasteleriaModel.pa_Login_Result)">
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_RegistrarUsuario">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="nombre" Mode="In" Type="String" />
+            <Parameter Name="apellido" Mode="In" Type="String" />
+            <Parameter Name="email" Mode="In" Type="String" />
+            <Parameter Name="pass" Mode="In" Type="String" />
+            <Parameter Name="idPerfil" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ListarUsuario" ReturnType="Collection(pasteleriaModel.pa_ListarUsuario_Result)" />
+          <FunctionImport Name="pa_BajarUsuario" ReturnType="Collection(pasteleriaModel.pa_BajarUsuario_Result)">
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ListarProducto" ReturnType="Collection(pasteleriaModel.pa_ListarProducto_Result)" />
+          <FunctionImport Name="pa_GuardarProducto" ReturnType="Collection(pasteleriaModel.pa_GuardarProducto_Result)">
+            <Parameter Name="idProducto" Mode="In" Type="Int32" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="nombreProducto" Mode="In" Type="String" />
+            <Parameter Name="precioProducto" Mode="In" Type="String" />
+            <Parameter Name="descripcion" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pa_BajarProducto" ReturnType="Collection(pasteleriaModel.pa_BajarProducto_Result)">
+          <Parameter Name="idProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_GuardarCategoria" ReturnType="Collection(pasteleriaModel.pa_GuardarCategoria_Result)">
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="nombreCategoria" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="idUsuario" />
+          </Key>
+          <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idPerfil" Type="Int32" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vigente" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="pa_Login_Result">
+          <Property Type="Int32" Name="CodError" Nullable="true" />
+          <Property Type="String" Name="mensaje" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pa_ListarUsuario_Result">
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="nombrePerfil" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pa_BajarUsuario_Result" >
+          <Property Type="String" Name="respuesta" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_ListarProducto_Result">
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+          <Property Type="String" Name="nombreProducto" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="precio" Nullable="true" />
+          <Property Type="String" Name="nombreCategoria" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="pa_GuardarProducto_Result">
+          <Property Type="Int32" Name="CodError" Nullable="true" />
+          <Property Type="String" Name="mensaje" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pa_BajarProducto_Result" >
+          <Property Type="String" Name="respuesta" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_GuardarCategoria_Result">
+          <Property Type="Int32" Name="CodError" Nullable="true" />
+          <Property Type="String" Name="mensaje" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="pasteleriaModelStoreContainer" CdmEntityContainer="pasteleriaEntities">
+          <EntitySetMapping Name="Boleta">
+            <EntityTypeMapping TypeName="pasteleriaModel.Boleta">
+              <MappingFragment StoreEntitySet="Boleta">
+                <ScalarProperty Name="idBoleta" ColumnName="idBoleta" />
+                <ScalarProperty Name="idCliente" ColumnName="idCliente" />
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="fechaCreacion" ColumnName="fechaCreacion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Categoria">
+            <EntityTypeMapping TypeName="pasteleriaModel.Categoria">
+              <MappingFragment StoreEntitySet="Categoria">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Perfil">
+            <EntityTypeMapping TypeName="pasteleriaModel.Perfil">
+              <MappingFragment StoreEntitySet="Perfil">
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Producto">
+            <EntityTypeMapping TypeName="pasteleriaModel.Producto">
+              <MappingFragment StoreEntitySet="Producto">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="precion" ColumnName="precion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="pasteleriaModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pa_Login" FunctionName="pasteleriaModel.Store.pa_Login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_Login_Result">
+                <ScalarProperty Name="CodError" ColumnName="CodError" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_RegistrarUsuario" FunctionName="pasteleriaModel.Store.pa_RegistrarUsuario" />
+          <FunctionImportMapping FunctionImportName="pa_ListarUsuario" FunctionName="pasteleriaModel.Store.pa_ListarUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarUsuario_Result">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="nombrePerfil" ColumnName="nombrePerfil" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_BajarUsuario" FunctionName="pasteleriaModel.Store.pa_BajarUsuario" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_BajarUsuario_Result" >
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ListarProducto" FunctionName="pasteleriaModel.Store.pa_ListarProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarProducto_Result">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="nombreCategoria" ColumnName="nombreCategoria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_GuardarProducto" FunctionName="pasteleriaModel.Store.pa_GuardarProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_GuardarProducto_Result">
+                <ScalarProperty Name="CodError" ColumnName="CodError" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_BajarProducto" FunctionName="pasteleriaModel.Store.pa_BajarProducto" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_BajarProducto_Result">
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_GuardarCategoria" FunctionName="pasteleriaModel.Store.pa_GuardarCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_GuardarCategoria_Result">
+                <ScalarProperty Name="CodError" ColumnName="CodError" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

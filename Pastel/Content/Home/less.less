@@ -1,0 +1,243 @@
+﻿* {
+  box-sizing: border-box;
+  &:before,&:after {
+    box-sizing: border-box;
+  }
+}
+html,body {
+  height: 100%;
+}
+body {
+  overflow: hidden;
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+.wrap_bg {
+  position: relative;
+  height: 100%;
+  background-image: url('https://s-media-cache-ak0.pinimg.com/originals/55/57/d7/5557d7261d6a3acf7605f074f0308705.png');
+  background-size: cover;
+  background-position: 50%;
+}
+
+.btn {
+  display: inline-block;
+  min-width: 140px;
+  padding: 0 20px;
+  border-radius: 5px;
+  line-height: 31px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 14px;
+  color: #fff;
+  outline: 0;
+  border: 0;
+  &_rounded {
+    border: 1px solid #C3C3C3;
+    color: #C3C3C3;
+    transition: all .3s ease-in-out;
+  }
+  &_red {
+    background-color: #f78c7b;
+    line-height: 33px;
+  }
+}
+
+.label {
+	&_name, &_mail, &_pass {
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+		&:before {
+    	position: absolute;
+			right: 5px;
+    	top: 10px;
+			transition: color .4s cubic-bezier(1,0,0,1);
+		}
+	} 
+	&_name {
+		&:before {
+    	content: "\f007";
+		}
+	} 
+	&_mail {
+		&:before {
+    	content: "\f0e0";
+		}
+	}
+	&_pass {
+		&:before {
+    	content: "\f023";
+		}
+	}
+}
+
+.forgotPass {
+  text-decoration: none;
+  color: #C3C3C3;
+}
+
+.login {
+  &_wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 830px;
+    height: 350px;
+    border-radius: 3px;
+    background-color: rgba(0,0,0, .55);
+    color: #c1c4d6;
+    transform: translate(-50%, -50%);
+  }
+  &_action_wrap {
+    position: absolute;
+    top: -40px;
+    left: 50px;
+    height: 430px;
+    width: 430px;
+    background-color: #f7f7f6;
+    border-radius: 3px;
+    box-shadow: 0 0 10px 3px rgba(39, 37, 37, 0.45);
+  }
+}
+
+.question {
+  &_singUp, &_login {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 270px;
+    .title {
+      margin: 0;
+      line-height: 32px;
+      font-size: 28px;
+    }
+    p {
+      padding: 15px 0 20px 0;
+      font-size: 14px;
+    }
+  }
+  &_singUp {
+    left: 50px;
+  }
+  &_login {
+    right: 50px;
+  }
+}
+
+.action {
+  &_singUp, &_login {
+    position: absolute;
+    top: 30px;
+    width: 330px;
+    z-index: 3;
+    .btn {
+      float: right;
+    }
+    .title {
+      color: #f78c7b;
+      text-transform: uppercase;
+      font-size: 22px;
+    }
+    .input {
+      width: 100%;
+      padding-bottom: 5px;
+      margin-bottom: 10px;
+      border: 0;
+      border-bottom: 2px solid #c1c4d6;
+      background-color: transparent;
+      line-height: 32px;
+      font-size: 13px;
+      &:hover, &:focus, &:active {
+        outline: 0;
+      }
+      &_block {
+        margin: 35px 0;
+      }
+    }
+  }
+  &_singUp{
+    left: 100px;
+  }
+  &_login {
+    right: 100px;
+  }
+}
+
+.input_wrap {
+  position: relative;
+}
+// animation
+.loginActive {
+  .login_action_wrap {
+    animation: .6s loginActive forwards;
+  }
+  .action_singUp, .question_login {
+    visibility: hidden;
+  }
+}
+
+.singUpActive {
+  .login_action_wrap {
+    animation: .6s singUpActive forwards;
+  }
+  .action_login, .question_singUp {
+    visibility: hidden;
+  }
+}
+
+.input {
+  + label {
+    &:after {
+      content: '';
+      position: absolute;
+      bottom: 10px;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background-color: #f78c7b;
+      transition: width .4s cubic-bezier(1,0,0,1);
+    }
+  }
+  &:focus {
+    + label {
+      &:after {
+        width: 100%;
+      }
+			&:before {
+				color: #f78c7b;
+			}
+    }
+  }
+}
+
+@keyframes loginActive {
+
+  40% {
+    transform: translateX(320px);
+  }
+  65% {
+    transform: translateX(280px);
+  }
+  100% {
+    transform: translateX(300px);
+  }
+}
+
+@keyframes singUpActive {
+  0% {
+    transform: translateX(300px);
+  }
+  40% {
+    transform: translateX(-20px);
+  }
+  65% {
+    transform: translateX(20px);
+  }
+  100% {
+    transform: none;
+  }
+}

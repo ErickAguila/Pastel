@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Caviar - Premium Restaurant Template</title>
+    @*<link rel="icon" href="img/core-img/favicon.ico">*@
+    <link href="~/Content/Template/style.css" rel="stylesheet">
+    <link href="~/Content/Template/css/responsive/responsive.css" rel="stylesheet">
+    <link href="~/Content/DataTable/DataTable.css" rel="stylesheet" />
+    <link href="~/Content/DataTable/DataTableResponsive.css" rel="stylesheet" />
+    <link href="~/Content/DataTable/DataTableBootstrap.css" rel="stylesheet" />
+    @* cdn bootstrap datatable *@
+    <link href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css" rel="stylesheet" />
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="caviar-load"></div>
+        <div class="preload-icons">
+            <img class="preload-1" src="~/Content/Template/img/core-img/preload-1.png" alt="">
+            <img class="preload-2" src="~/Content/Template/img/core-img/preload-2.png" alt="">
+            <img class="preload-3" src="~/Content/Template/img/core-img/preload-3.png" alt="">
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header_area" id="header">
+        <div class="container h-100">
+            <div class="row h-100">
+                <div class="col-12 h-100">
+                    <nav class="h-100 navbar navbar-expand-lg align-items-center">
+                        <a class="navbar-brand" href="index.html">Pasteleria</a>
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#caviarNav" aria-controls="caviarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
+                        <div class="collapse navbar-collapse" id="caviarNav">
+                            <ul class="navbar-nav ml-auto" id="caviarMenu">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="/Home/Home">Home <span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Usuario/MantenedorUsuario">Usuario</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/Producto/MantenedorProducto">Producto</a>
+                                        <a class="dropdown-item" href="/Producto/MantenedorCategoria">Categoria</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="/Producto/Ventas">Ventas</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#" onclick="Logout()">Cerrar Sesión</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="breadcumb-area bg-img bg-overlay" style="background-color: #000000; height: 100px;">
+
+    </div>
+
+    <div class="container">
+        <br />
+        @RenderBody()
+        <br />
+    </div>
+
+    <footer class="caviar-footer-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="footer-text">
+                        <a href="#" class="navbar-brand">Pasteleria</a>
+                        <p>
+                            Copyright &copy;
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/Content/Template/js/jquery/jquery-2.2.4.min.js"></script>
+    <script src="~/Content/Template/js/bootstrap/popper.min.js"></script>
+    <script src="~/Content/Template/js/bootstrap/bootstrap.min.js"></script>
+    <script src="~/Content/Template/js/others/plugins.js"></script>
+    <script src="~/Content/Template/js/active.js"></script>
+    <script src="~/Content/DataTable/DataTable.js"></script>
+    <script src="~/Content/DataTable/DataTableResponsive.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+
+
+    <script src="~/Scripts/Usuario/Usuario.js"></script>
+    <script src="~/Scripts/Producto/Producto.js"></script>
+    <script src="~/Content/Home/Sweetalert.js"></script>
+    <script src="~/Scripts/Producto/Categoria.js"></script>
+</body>
+</html>
