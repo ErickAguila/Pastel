@@ -25,6 +25,16 @@ namespace Pastel.Controllers
             return View();
         }
 
+        public ActionResult Productos()
+        {
+            if (Session["NombreUsuario"] != null)
+            {
+                ViewBag.nombreUsuario = Session["NombreUsuario"].ToString();
+                ViewBag.idPerfilUsuario = Session["PerfilUsuario"].ToString();
+            }
+            return View();
+        }
+
         public String FinSession()
         {
             Session.Abandon();

@@ -345,6 +345,7 @@
     <Content Include="Views\Producto\MantenedorProducto.cshtml" />
     <Content Include="Views\Producto\MantenedorCategoria.cshtml" />
     <Content Include="Views\Producto\Ventas.cshtml" />
+    <Content Include="Views\Home\Productos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
