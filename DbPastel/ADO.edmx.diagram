@@ -5,11 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="226b3779e1a84ca8bb845dccb076960d" Name="Diagram1" ZoomLevel="85">
-        <EntityTypeShape EntityType="pasteleriaModel.Boleta" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pasteleriaModel.Categoria" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pasteleriaModel.Perfil" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pasteleriaModel.Producto" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="pasteleriaModel.Usuario" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="pasteleriaModel.Categoria" Width="1.5" PointX="8.125" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="pasteleriaModel.Perfil" Width="1.5" PointX="3.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="pasteleriaModel.Producto" Width="1.5" PointX="8.125" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="pasteleriaModel.Usuario" Width="1.5" PointX="3.25" PointY="1" />
+        <AssociationConnector Association="pasteleriaModel.FK_Producto_Categoria" />
+        <AssociationConnector Association="pasteleriaModel.FK_Usuario_Perfil" />
+        <EntityTypeShape EntityType="pasteleriaModel.boleta" Width="1.5" PointX="5.75" PointY="1" />
+        <AssociationConnector Association="pasteleriaModel.FK_boleta_Usuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

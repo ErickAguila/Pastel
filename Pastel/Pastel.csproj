@@ -228,6 +228,7 @@
     <Content Include="Content\DataTable\DataTableBootstrap.css" />
     <Content Include="Content\DataTable\DataTableResponsive.css" />
     <Content Include="Content\DataTable\DataTableResponsive.js" />
+    <Content Include="Content\FontAwesome.css" />
     <Content Include="Content\Home\Bootstrapcdn.css" />
     <Content Include="Content\Home\Fondo-login.jpg" />
     <Content Include="Content\Home\home.css" />
@@ -278,6 +279,7 @@
     <Content Include="Content\Template\img\menu-img\dish-3.png" />
     <Content Include="Content\Template\img\nostros.jpg" />
     <Content Include="Content\Template\img\pastelero.jpg" />
+    <Content Include="Content\Template\img\producto-fondo.jpg" />
     <Content Include="Content\Template\img\testimonial-img\1.jpg" />
     <Content Include="Content\Template\img\testimonial-img\2.jpg" />
     <Content Include="Content\Template\img\testimonial-img\3.jpg" />
@@ -308,6 +310,7 @@
     <Content Include="Content\Template\fonts\Pe-icon-7-stroke.eot" />
     <Content Include="Content\Template\fonts\Pe-icon-7-stroke.ttf" />
     <Content Include="Content\Template\fonts\Pe-icon-7-stroke.woff" />
+    <None Include="Properties\PublishProfiles\Produccion.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -322,6 +325,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\Usuario\Usuario.js" />
+    <Content Include="Scripts\Usuario\UsuarioNoVigente.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -346,6 +350,7 @@
     <Content Include="Views\Producto\MantenedorCategoria.cshtml" />
     <Content Include="Views\Producto\Ventas.cshtml" />
     <Content Include="Views\Home\Productos.cshtml" />
+    <Content Include="Views\Usuario\ManteneodrUsuarioNoVigente.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,13 +17,18 @@ namespace Pastel.Controllers
             return View();
         }
 
+        public ActionResult ManteneodrUsuarioNoVigente()
+        {
+            return View();
+        }
+
         public String RegistrarUsuario(int idUsuario, string nombre, string apellido, string email, string pass, int idPerfil)
         {
             try
             {
                 Cl_Usuario usuario = new Cl_Usuario();
-                usuario.RegistrarUsuario(idUsuario, nombre, apellido, email, pass, idPerfil);
-                return "ok";
+                var res = usuario.RegistrarUsuario(idUsuario, nombre, apellido, email, pass, idPerfil).First();
+                return res.respuesta;
             }
             catch (Exception ex)
             {
@@ -72,6 +77,34 @@ namespace Pastel.Controllers
                 throw new Exception(ex.Message);
             }
         }
-        
+
+
+        public String ListarUsuarioNoVigente()
+        {
+            try
+            {
+                Cl_Usuario usuario = new Cl_Usuario();
+                var lista = usuario.ListarUsuarioNoVigente();
+                return JsonConvert.SerializeObject(lista).ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public String SubirUsuario(int idUsuario)
+        {
+            try
+            {
+                Cl_Usuario usuario = new Cl_Usuario();
+                var resp = usuario.SubirUsuario(idUsuario);
+                return resp.First().respuesta;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

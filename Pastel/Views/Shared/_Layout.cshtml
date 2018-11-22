@@ -34,21 +34,32 @@
             <div class="row h-100">
                 <div class="col-12 h-100">
                     <nav class="h-100 navbar navbar-expand-lg align-items-center">
-                        <a class="navbar-brand" href="index.html">Pasteleria</a>
+                        <a class="navbar-brand" href="index.html">Dulce Recuerdo</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#caviarNav" aria-controls="caviarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                         <div class="collapse navbar-collapse" id="caviarNav">
                             <ul class="navbar-nav ml-auto" id="caviarMenu">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="/Home/Home">Home <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/Usuario/MantenedorUsuario">Usuario</a>
+                                    <a class="nav-link" href="/Home/Home">Home</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Administrar</a>
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuarios</a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="/Producto/MantenedorProducto">Producto</a>
-                                        <a class="dropdown-item" href="/Producto/MantenedorCategoria">Categoria</a>
+                                        <a class="dropdown-item" href="/Usuario/MantenedorUsuario">Usuario vigentes</a>
+                                        <a class="dropdown-item" href="/Usuario/ManteneodrUsuarioNoVigente">Usuario no vigentes</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Productos</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/Producto/MantenedorProducto">Productos vigentes</a>
+                                        <a class="dropdown-item" href="#">Producto no vigentes</a>
+                                    </div>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categorias</a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="/Producto/MantenedorCategoria">Categoria vigentes</a>
+                                        <a class="dropdown-item" href="#">Categoria no vigente</a>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -81,7 +92,7 @@
             <div class="row">
                 <div class="col-12">
                     <div class="footer-text">
-                        <a href="#" class="navbar-brand">Pasteleria</a>
+                        <a href="#" class="navbar-brand">Dulce Recuerdo</a>
                         <p>
                             Copyright &copy;
                             <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
@@ -101,11 +112,8 @@
     <script src="~/Content/DataTable/DataTableResponsive.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-
-
-    <script src="~/Scripts/Usuario/Usuario.js"></script>
-    <script src="~/Scripts/Producto/Producto.js"></script>
     <script src="~/Content/Home/Sweetalert.js"></script>
-    <script src="~/Scripts/Producto/Categoria.js"></script>
+    <script src="~/Content/Home/home.js"></script>
+    @RenderSection("JavaScript", required: false)
 </body>
 </html>

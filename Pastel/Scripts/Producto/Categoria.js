@@ -1,6 +1,7 @@
 ﻿var tablaCategoria
 $(document).ready(function () {
     CargarDatosTablaCategoria();
+    $.fn.dataTable.ext.errMode = 'throw'
     tablaCategoria = $('#TbListarCategoria').dataTable({
         'bJQueryUI': true,
         'bLengthChange': true,

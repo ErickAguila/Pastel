@@ -30,6 +30,10 @@ public partial class Producto
 
     public Nullable<bool> vigente { get; set; }
 
+
+
+    public virtual Categoria Categoria { get; set; }
+
 }
 
 }

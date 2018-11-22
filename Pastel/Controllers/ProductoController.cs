@@ -55,7 +55,7 @@ namespace Pastel.Controllers
             try
             {
                 pasteleriaEntities modelo = new pasteleriaEntities();
-                var lista = modelo.Categoria.OrderBy(c => c.nombre);
+                var lista = modelo.Categoria;
                 return JsonConvert.SerializeObject(lista).ToString();
             }
             catch (Exception ex)

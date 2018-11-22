@@ -5,9 +5,10 @@
 <head>
     <title>Index</title>
     @* CSS *@
-    <link href="~/Content/Home/Bootstrapcdn.css" rel="stylesheet" />
-    <link href="~/Content/Home/home.css" rel="stylesheet" />
-    <link href="~/Content/Home/Lato.css" rel="stylesheet" />
+    <link href="/Content/Home/Bootstrapcdn.css" rel="stylesheet" />
+    <link href="/Content/Home/home.css" rel="stylesheet" />
+    <link href="/Content/Home/Lato.css" rel="stylesheet" />
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
 <body>
     <div class="wrap_bg">
@@ -28,60 +29,99 @@
                     <a href="javascript:void(0)" id="loginBtn" class="btn btn_rounded">Ingresar</a>
                 </div>
                 <div class="action_singUp">
-                    <form action="#">
-                        <fieldset style="border:none">
-                            <legend class="title">Registrarme</legend>
-                            <div class="input_block">
-                                <div class="input_wrap">
-                                    <input type="text" id="txtNombre" class="input" placeholder="Nombre">
-                                    <label for="sing_name" class="label_name"></label>
-                                </div>
-                                <div class="input_wrap">
-                                    <input type="text" id="txtApellido" class="input" placeholder="Apellido">
-                                    <label for="sing_name" class="label_name"></label>
-                                </div>
-                                <div class="input_wrap">
-                                    <input type="text" id="txtEmail" class="input" placeholder="Email">
-                                    <label for="sing_email" class="label_mail"></label>
-                                </div>
-                                <div class="input_wrap">
-                                    <input type="password" id="txtPass" class="input" placeholder="Contraseña">
-                                    <label for="sing_pass" class="label_pass"></label>
-                                </div>
+                    <fieldset style="border:none">
+                        <legend class="title">Registrarme</legend>
+                        <div class="input_block">
+                            <div class="input_wrap">
+                                <input type="text" id="txtNombre" class="input" placeholder="Nombre">
+                                <label for="sing_name" class="label_name"></label>
                             </div>
-                            <input type="submit" value="Registrarme" class="btn btn_red" onclick="GuardarUsuario()" style="cursor:pointer;">
-                        </fieldset>
-                    </form>
+                            <div class="input_wrap">
+                                <input type="text" id="txtApellido" class="input" placeholder="Apellido">
+                                <label for="sing_name" class="label_name"></label>
+                            </div>
+                            <div class="input_wrap">
+                                <input type="text" id="txtEmail" class="input" placeholder="Email">
+                                <label for="sing_email" class="label_mail"></label>
+                            </div>
+                            <div class="input_wrap">
+                                <input type="password" id="txtPass" class="input" placeholder="Contraseña">
+                                <label for="sing_pass" class="label_pass"></label>
+                            </div>
+                        </div>
+                        <input type="submit" value="Registrarme" class="btn btn_red" onclick="GuardarUsuario()" style="cursor:pointer;">
+                    </fieldset>
                 </div>
                 <div class="action_login">
-                    <form action="#">
-                        <fieldset style="border:none">
-                            <legend class="title">Ingresar</legend>
-                            <div class="input_block">
-                                <div class="input_wrap">
-                                    <input type="text" id="user" class="input" placeholder="Email">
-                                    <label for="sing_pass" class="label_mail"></label>
-                                </div>
-                                <div class="input_wrap">
-                                    <input type="password" id="pass" class="input" placeholder="Contraseña">
-                                    <label for="sing_pass" class="label_pass"></label>
-                                </div>
+                    <fieldset style="border:none">
+                        <legend class="title">Ingresar</legend>
+                        <div class="input_block">
+                            <div class="input_wrap">
+                                <input type="text" id="user" class="input" placeholder="Email">
+                                <label for="sing_pass" class="label_mail"></label>
                             </div>
-                            <input type="submit" value="Ingresar" class="btn btn_red" onclick="Login()" style="cursor:pointer;">
-                        </fieldset>
-                    </form>
+                            <div class="input_wrap">
+                                <input type="password" id="pass" class="input" placeholder="Contraseña">
+                                <label for="sing_pass" class="label_pass"></label>
+                            </div>
+                        </div>
+                        <input type="submit" value="Ingresar" class="btn btn_red" onclick="Login()" style="cursor:pointer;">
+                    </fieldset>
                 </div>
             </div>
             <div class="login_action_wrap ">
             </div>
         </div>
     </div>
-
     @* Script *@
-    <script src="~/Content/Home/Jquery.js"></script>
-    <script src="~/Content/Home/home.js"></script>
-    <script src="~/Content/Home/Sweetalert.js"></script>
-    <script src="~/Scripts/Usuario/Usuario.js"></script>
+    <script src="/Content/Home/Jquery.js"></script>
+    <script src="/Content/Home/home.js"></script>
+    <script src="/Content/Home/Sweetalert.js"></script>
+    <script>
+        $(document).ready(function () {
+
+        });
+
+        function GuardarUsuario() {
+            var nombre = $("#txtNombre").val();
+            var apellido = $("#txtApellido").val();
+            var email = $("#txtEmail").val();
+            var pass = $("#txtPass").val();
+
+            $.ajax({
+                type: "POST",
+                url: "/Usuario/RegistrarUsuario",
+                data: {
+                    idUsuario: 0,
+                    nombre: nombre,
+                    apellido: apellido,
+                    email: email,
+                    pass: pass,
+                    idPerfil: 2
+                },
+                success: function (respuesta) {
+                    if (respuesta == "correo existe") {
+                        swal("Error detectado!", "El correo electrónico ya existe", "error");
+                    }
+
+                    if (respuesta == "usuario creado") {
+                        swal({
+                            title: 'Excelente!',
+                            text: 'Usuario guardado con éxito!',
+                            icon: 'success'
+                        }).then(function () {
+                            $("#txtNombre").val('');
+                            $("#txtApellido").val('');
+                            $("#txtEmail").val('');
+                            $("#txtPass").val('');
+                        });
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    swal("Error detectado!", "Error al guardar el usuario", "error");
+                }
+            })
+        }
+    </script>
 </body>
 </html>
-

@@ -35,8 +35,6 @@ public partial class pasteleriaEntities : DbContext
     }
 
 
-    public virtual DbSet<Boleta> Boleta { get; set; }
-
     public virtual DbSet<Categoria> Categoria { get; set; }
 
     public virtual DbSet<Perfil> Perfil { get; set; }
@@ -44,6 +42,8 @@ public partial class pasteleriaEntities : DbContext
     public virtual DbSet<Producto> Producto { get; set; }
 
     public virtual DbSet<Usuario> Usuario { get; set; }
+
+    public virtual DbSet<boleta> boleta { get; set; }
 
 
     public virtual ObjectResult<pa_Login_Result> pa_Login(string email, string pass)
@@ -60,43 +60,6 @@ public partial class pasteleriaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_Login_Result>("pa_Login", emailParameter, passParameter);
-    }
-
-
-    public virtual int pa_RegistrarUsuario(Nullable<int> idUsuario, string nombre, string apellido, string email, string pass, Nullable<int> idPerfil)
-    {
-
-        var idUsuarioParameter = idUsuario.HasValue ?
-            new ObjectParameter("idUsuario", idUsuario) :
-            new ObjectParameter("idUsuario", typeof(int));
-
-
-        var nombreParameter = nombre != null ?
-            new ObjectParameter("nombre", nombre) :
-            new ObjectParameter("nombre", typeof(string));
-
-
-        var apellidoParameter = apellido != null ?
-            new ObjectParameter("apellido", apellido) :
-            new ObjectParameter("apellido", typeof(string));
-
-
-        var emailParameter = email != null ?
-            new ObjectParameter("email", email) :
-            new ObjectParameter("email", typeof(string));
-
-
-        var passParameter = pass != null ?
-            new ObjectParameter("pass", pass) :
-            new ObjectParameter("pass", typeof(string));
-
-
-        var idPerfilParameter = idPerfil.HasValue ?
-            new ObjectParameter("idPerfil", idPerfil) :
-            new ObjectParameter("idPerfil", typeof(int));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pa_RegistrarUsuario", idUsuarioParameter, nombreParameter, apellidoParameter, emailParameter, passParameter, idPerfilParameter);
     }
 
 
@@ -184,6 +147,62 @@ public partial class pasteleriaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_GuardarCategoria_Result>("pa_GuardarCategoria", idCategoriaParameter, nombreCategoriaParameter);
+    }
+
+
+    public virtual ObjectResult<pa_RegistrarUsuario_Result> pa_RegistrarUsuario(Nullable<int> idUsuario, string nombre, string apellido, string email, string pass, Nullable<int> idPerfil)
+    {
+
+        var idUsuarioParameter = idUsuario.HasValue ?
+            new ObjectParameter("idUsuario", idUsuario) :
+            new ObjectParameter("idUsuario", typeof(int));
+
+
+        var nombreParameter = nombre != null ?
+            new ObjectParameter("nombre", nombre) :
+            new ObjectParameter("nombre", typeof(string));
+
+
+        var apellidoParameter = apellido != null ?
+            new ObjectParameter("apellido", apellido) :
+            new ObjectParameter("apellido", typeof(string));
+
+
+        var emailParameter = email != null ?
+            new ObjectParameter("email", email) :
+            new ObjectParameter("email", typeof(string));
+
+
+        var passParameter = pass != null ?
+            new ObjectParameter("pass", pass) :
+            new ObjectParameter("pass", typeof(string));
+
+
+        var idPerfilParameter = idPerfil.HasValue ?
+            new ObjectParameter("idPerfil", idPerfil) :
+            new ObjectParameter("idPerfil", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_RegistrarUsuario_Result>("pa_RegistrarUsuario", idUsuarioParameter, nombreParameter, apellidoParameter, emailParameter, passParameter, idPerfilParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ListarUsuarioNoVigente_Result> pa_ListarUsuarioNoVigente()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarUsuarioNoVigente_Result>("pa_ListarUsuarioNoVigente");
+    }
+
+
+    public virtual ObjectResult<pa_SubirUsuario_Result> pa_SubirUsuario(Nullable<int> idUsuario)
+    {
+
+        var idUsuarioParameter = idUsuario.HasValue ?
+            new ObjectParameter("idUsuario", idUsuario) :
+            new ObjectParameter("idUsuario", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_SubirUsuario_Result>("pa_SubirUsuario", idUsuarioParameter);
     }
 
 }

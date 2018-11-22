@@ -1,6 +1,7 @@
 ﻿var tablaProducto
 $(document).ready(function () {
     CargarDatosTablaProducto();
+    $.fn.dataTable.ext.errMode = 'throw'
     tablaProducto = $('#TbListarProducto').dataTable({
         'bJQueryUI': true,
         'bLengthChange': true,
@@ -32,7 +33,7 @@ $(document).ready(function () {
             { "data": "descripcion", "sClass": "text-left" },
             {
                 "data": "idProducto", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<center><button class='btn btn-danger btn-md' onclick='BajarUsuario(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-trash'></i></button></center>");
+                    $(nTd).html("<center><button class='btn btn-danger btn-md' onclick='BajarProducto(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-trash'></i></button></center>");
                 }
             }, {
                 "data": "idProducto", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
@@ -118,7 +119,7 @@ function EditarProducto(codigo) {
     })
 }
 
-function BajarUsuario(codigo) {
+function BajarProducto(codigo) {
     swal({
         title: "¿Está seguro?",
         text: "Se dará de baja el Producto!",

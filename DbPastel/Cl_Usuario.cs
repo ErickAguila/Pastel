@@ -10,11 +10,12 @@ namespace DbPastel
     {
         pasteleriaEntities modelo = new pasteleriaEntities();
 
-        public void RegistrarUsuario(int idUsuario, string nombre, string apellido, string email, string pass, int idPerfil)
+        public List<pa_RegistrarUsuario_Result> RegistrarUsuario(int idUsuario, string nombre, string apellido, string email, string pass, int idPerfil)
         {
             try
             {
-                modelo.pa_RegistrarUsuario(idUsuario, nombre, apellido, email, pass, idPerfil);
+                var resp = modelo.pa_RegistrarUsuario(idUsuario, nombre, apellido, email, pass, idPerfil).ToList();
+                return resp;
             }
             catch (Exception ex)
             {
@@ -40,6 +41,33 @@ namespace DbPastel
             try
             {
                 var resp = modelo.pa_BajarUsuario(idUsuario).ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public List<pa_ListarUsuarioNoVigente_Result> ListarUsuarioNoVigente()
+        {
+            try
+            {
+                var resp = modelo.pa_ListarUsuarioNoVigente().ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<pa_SubirUsuario_Result> SubirUsuario(int idUsuario)
+        {
+            try
+            {
+                var resp = modelo.pa_SubirUsuario(idUsuario).ToList();
                 return resp;
             }
             catch (Exception ex)

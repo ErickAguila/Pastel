@@ -13,23 +13,11 @@ namespace DbPastel
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class Usuario
+public partial class pa_ListarUsuarioNoVigente_Result
 {
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public Usuario()
-    {
-
-        this.boleta = new HashSet<boleta>();
-
-    }
-
-
     public int idUsuario { get; set; }
-
-    public Nullable<int> idPerfil { get; set; }
 
     public string nombre { get; set; }
 
@@ -37,17 +25,7 @@ public partial class Usuario
 
     public string email { get; set; }
 
-    public string pass { get; set; }
-
-    public Nullable<bool> vigente { get; set; }
-
-
-
-    public virtual Perfil Perfil { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<boleta> boleta { get; set; }
+    public string nombrePerfil { get; set; }
 
 }
 

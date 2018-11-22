@@ -1,6 +1,7 @@
 ﻿var tablaUsuario
 $(document).ready(function () {
     CargarDatosTablaUsuario();
+    $.fn.dataTable.ext.errMode = 'throw'
     tablaUsuario = $('#TbListarUsuario').dataTable({
         'bJQueryUI': true,
         'bLengthChange': true,
@@ -32,11 +33,11 @@ $(document).ready(function () {
             { "data": "nombrePerfil", "sClass": "text-left" },
             {
                 "data": "idUsuario", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<center><button class='btn btn-danger btn-md' onclick='BajarUsuario(" + oData.idUsuario + ")' style='cursor:pointer;'><i class='fa fa-trash'></i></button></center>");
+                    $(nTd).html("<center><button class='btn btn-warning btn-md' onclick='EditarUsuario(" + oData.idUsuario + ")' style='cursor:pointer;'><i class='fa fa-edit' style='color:#ffffff;'></i></button></center>");
                 }
             }, {
                 "data": "idUsuario", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<center><button class='btn btn-warning btn-md' onclick='EditarUsuario(" + oData.idUsuario + ")' style='cursor:pointer;'><i class='fa fa-edit' style='color:#ffffff;'></i></button></center>");
+                    $(nTd).html("<center><button class='btn btn-danger btn-md' onclick='BajarUsuario(" +oData.idUsuario + ")' style='cursor:pointer;'><i class='fa fa-arrow-down'></i></button></center>");
                 }
             }
         ]

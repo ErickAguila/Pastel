@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "ManteneodrUsuarioNoVigente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuario no vigentes</h2>
+
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-12">
+        <table class="table table-striped" style="width:100%" id="TbListarUsuarioNoVigente">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Email</th>
+                    <th>Perfil</th>
+                    <th>Subir Usuario</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section JavaScript{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Usuario/UsuarioNoVigente.js")"></script>
+}

@@ -13,28 +13,11 @@ namespace DbPastel
 {
 
 using System;
-    using System.Collections.Generic;
     
-public partial class boleta
+public partial class pa_RegistrarUsuario_Result
 {
 
-    public int idBoleta { get; set; }
-
-    public Nullable<int> idUsuario { get; set; }
-
-    public Nullable<int> idProducto { get; set; }
-
-    public Nullable<int> idCategoria { get; set; }
-
-    public Nullable<int> cantidad { get; set; }
-
-    public Nullable<int> precio { get; set; }
-
-    public Nullable<System.DateTime> fechaCompra { get; set; }
-
-
-
-    public virtual Usuario Usuario { get; set; }
+    public string respuesta { get; set; }
 
 }
 
