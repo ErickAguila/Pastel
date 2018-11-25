@@ -26,6 +26,11 @@ namespace Pastel.Controllers
             return View();
         }
 
+        public ActionResult MantenedorProductoNoVigente()
+        {
+            return View();
+        }
+
         public ActionResult Ventas()
         {
             return View();
@@ -54,8 +59,8 @@ namespace Pastel.Controllers
         {
             try
             {
-                pasteleriaEntities modelo = new pasteleriaEntities();
-                var lista = modelo.Categoria;
+                Cl_Producto producto = new Cl_Producto();
+                var lista = producto.ListarCategoria();
                 return JsonConvert.SerializeObject(lista).ToString();
             }
             catch (Exception ex)
@@ -78,12 +83,13 @@ namespace Pastel.Controllers
             }
         }
 
-        public String GuardarCategoria(int idCategoria, string nombreCategoria)
+        public String GuardarCategoria(int idCategoria, string nombreCategoria,int isVigente)
         {
             try
             {
                 Cl_Producto producto = new Cl_Producto();
-                var respuesta = producto.GuardarCategoria(idCategoria, nombreCategoria);
+                var vigente = Convert.ToBoolean(isVigente);
+                var respuesta = producto.GuardarCategoria(idCategoria, nombreCategoria,vigente);
                 return respuesta.First().mensaje;
             }
             catch (Exception ex)
@@ -96,8 +102,8 @@ namespace Pastel.Controllers
         {
             try
             {
-                pasteleriaEntities modelo = new pasteleriaEntities();
-                var lista = modelo.Producto.Where(p => p.idProducto == idProducto);
+                Cl_Producto producto = new Cl_Producto();
+                var lista = producto.ObtenerDatoProducto(idProducto);
                 return JsonConvert.SerializeObject(lista).ToString();
             }
             catch (Exception ex)
@@ -110,8 +116,8 @@ namespace Pastel.Controllers
         {
             try
             {
-                pasteleriaEntities modelo = new pasteleriaEntities();
-                var lista = modelo.Categoria.Where(c => c.idCategoria == idCategoria);
+                Cl_Producto producto = new Cl_Producto();
+                var lista = producto.ObtenerDatoCategoria(idCategoria);
                 return JsonConvert.SerializeObject(lista).ToString();
             }
             catch (Exception ex)
@@ -127,6 +133,34 @@ namespace Pastel.Controllers
                 Cl_Producto producto = new Cl_Producto();
                 var respuesta = producto.BajarProducto(idProducto).First();
                 return respuesta.respuesta;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public String ListarProductoNoVigente()
+        {
+            try
+            {
+                Cl_Producto producto = new Cl_Producto();
+                var listar = producto.ListarProductoNoVigente();
+                return JsonConvert.SerializeObject(listar).ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public String SubirProducto(int idProducto)
+        {
+            try
+            {
+                Cl_Producto producto = new Cl_Producto();
+                var resp = producto.SubirProducto(idProducto);
+                return resp.First().respuesta;
             }
             catch (Exception ex)
             {

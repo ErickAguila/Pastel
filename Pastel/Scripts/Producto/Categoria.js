@@ -28,7 +28,16 @@ $(document).ready(function () {
 
         "columns": [
             { "data": "nombre", "sClass": "text-left" },
-            { "data": "vigente", "sClass": "text-left" },
+            {
+                "data": "vigente", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                    if (oData.vigente == true) {
+                        $(nTd).html("Si");
+                    }else{
+                        $(nTd).html("No");
+                    }
+                    
+                }
+            },
             {
                 "data": "idCategoria", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
                     $(nTd).html("<center><button class='btn btn-warning btn-md' onclick='EditarCategoria(" + oData.idCategoria + ")' style='cursor:pointer;' data-toggle='modal' data-target='#openModalCategoria'><i class='fa fa-edit' style='color:#ffffff;'></i></button></center>");
@@ -72,7 +81,8 @@ function GuardarCategoria() {
                 url: "/Producto/GuardarCategoria",
                 data: {
                     idCategoria:0,
-                    nombreCategoria: value
+                    nombreCategoria: value,
+                    isVigente:1
                 },
                 success: function (respuesta) {
                     if (respuesta == "Categoria creada") {
@@ -96,12 +106,17 @@ function GuardarCategoria() {
 function ActualizarCategoria() {
     var idCategoria = $("#txtIdCategoria").val();
     var nombreCategoria = $("#txtNombreCategoria").val();
+    var vigente = 0;
+    if ($("#rbtnVigente").is(":checked", true) == true) {
+        vigente = 1;
+    }
     $.ajax({
         type: "POST",
         url: "/Producto/GuardarCategoria",
         data: {
             idCategoria: idCategoria,
-            nombreCategoria: nombreCategoria
+            nombreCategoria: nombreCategoria,
+            isVigente:vigente
         },
         success: function (respuesta) {
             if (respuesta == "Categoria actualizada") {
@@ -131,6 +146,11 @@ function EditarCategoria(codigo) {
             $.each(respuesta, function (i, item) {
                 $("#txtIdCategoria").val(item.idCategoria);
                 $("#txtNombreCategoria").val(item.nombre);
+                if (item.vigente == true) {
+                    $("#rbtnVigente").prop("checked", true);
+                } else {
+                    $("#rbtnVigente").prop("checked", false);
+                }
             })
         },
         error: function (xhr, ajaxOptions, thrownError) {

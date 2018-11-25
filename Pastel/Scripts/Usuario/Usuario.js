@@ -11,7 +11,7 @@ $(document).ready(function () {
         "paging": true,
         "ordering": true,
         "info": true,
-        'iDisplayLength': 10, //Paginacion
+        'iDisplayLength': 10,
         'oLanguage': {
             'sZeroRecords': "No hay recursos que mostrar.",
             'sInfo': "Registros _START_ al _END_ de _TOTAL_",
@@ -42,6 +42,9 @@ $(document).ready(function () {
             }
         ]
     });
+
+    //$('#btnUsuario').modal({ backdrop: 'static', keyboard: false })
+
 });
 
 

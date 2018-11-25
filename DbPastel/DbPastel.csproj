@@ -87,6 +87,12 @@
     <Compile Include="pa_GuardarProducto_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="pa_ListarCategoria_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pa_ListarProductoNoVigente_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="pa_ListarProducto_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
@@ -99,7 +105,19 @@
     <Compile Include="pa_Login_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="pa_ObtenerDatoCategoria_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pa_ObtenerDatoProducto_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pa_ObtenerDatoUsuario_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="pa_RegistrarUsuario_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pa_SubirProducto_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="pa_SubirUsuario_Result.cs">

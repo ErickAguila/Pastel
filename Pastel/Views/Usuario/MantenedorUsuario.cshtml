@@ -5,12 +5,12 @@
 }
 
 @* Modal para Guardar Usuarios *@
-<div class="modal fade" id="btnUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="btnUsuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true"  data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Usuario</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="LimpiarCamposUsuarios()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" style="float:left;" data-dismiss="modal" id="closeModalUsuario">Cerrar</button>
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="closeModalUsuario" onclick="LimpiarCamposUsuarios()">Cerrar</button>
                 <button type="button" class="btn btn-success" onclick="GuardarUsuario()">Guardar Usuario</button>
             </div>
         </div>

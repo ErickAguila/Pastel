@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "MantenedorProductoNoVigente";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Productos no vigentes</h2>
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-12">
+        <table class="table table-striped" style="width:100%" id="TbListarProductoNoVigente">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Categoria</th>
+                    <th>Descripción</th>
+                    <th>Subir Producto</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section JavaScript{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Producto/ProductoNoVigente.js")"></script>
+}
+

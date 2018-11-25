@@ -40,8 +40,8 @@ namespace Pastel.Controllers
         {
             try
             {
-                pasteleriaEntities modelo = new pasteleriaEntities();
-                var listar = modelo.Usuario.Where(u => u.idUsuario == idUsuario);
+                Cl_Usuario usuario = new Cl_Usuario();
+                var listar = usuario.ObtenerDatoUsuario(idUsuario);
                 return JsonConvert.SerializeObject(listar).ToString();
             }
             catch (Exception ex)

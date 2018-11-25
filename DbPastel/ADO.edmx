@@ -101,6 +101,7 @@
         <Function Name="pa_GuardarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCategoria" Type="int" Mode="In" />
           <Parameter Name="nombreCategoria" Type="varchar" Mode="In" />
+          <Parameter Name="vigente" Type="bit" Mode="In" />
         </Function>
         <Function Name="pa_GuardarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idProducto" Type="int" Mode="In" />
@@ -109,12 +110,23 @@
           <Parameter Name="precioProducto" Type="varchar" Mode="In" />
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_ListarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_ListarProductoNoVigente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarUsuarioNoVigente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="pass" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="pa_ObtenerDatoCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_ObtenerDatoProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_ObtenerDatoUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_RegistrarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuario" Type="int" Mode="In" />
@@ -123,6 +135,9 @@
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="pass" Type="varchar" Mode="In" />
           <Parameter Name="idPerfil" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_SubirProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProducto" Type="int" Mode="In" />
         </Function>
         <Function Name="pa_SubirUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuario" Type="int" Mode="In" />
@@ -204,10 +219,6 @@
           <FunctionImport Name="pa_BajarProducto" ReturnType="Collection(pasteleriaModel.pa_BajarProducto_Result)">
           <Parameter Name="idProducto" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pa_GuardarCategoria" ReturnType="Collection(pasteleriaModel.pa_GuardarCategoria_Result)">
-            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
-            <Parameter Name="nombreCategoria" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="pa_RegistrarUsuario" ReturnType="Collection(pasteleriaModel.pa_RegistrarUsuario_Result)">
             <Parameter Name="idUsuario" Mode="In" Type="Int32" />
             <Parameter Name="nombre" Mode="In" Type="String" />
@@ -231,7 +242,26 @@
           </AssociationSet>
           <FunctionImport Name="pa_ListarUsuarioNoVigente" ReturnType="Collection(pasteleriaModel.pa_ListarUsuarioNoVigente_Result)" />
           <FunctionImport Name="pa_SubirUsuario" ReturnType="Collection(pasteleriaModel.pa_SubirUsuario_Result)">
-            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ListarProductoNoVigente" ReturnType="Collection(pasteleriaModel.pa_ListarProductoNoVigente_Result)" />
+          <FunctionImport Name="pa_SubirProducto" ReturnType="Collection(pasteleriaModel.pa_SubirProducto_Result)">
+          <Parameter Name="idProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ObtenerDatoProducto" ReturnType="Collection(pasteleriaModel.pa_ObtenerDatoProducto_Result)">
+          <Parameter Name="idProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ObtenerDatoUsuario" ReturnType="Collection(pasteleriaModel.pa_ObtenerDatoUsuario_Result)">
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ListarCategoria" ReturnType="Collection(pasteleriaModel.pa_ListarCategoria_Result)" />
+          <FunctionImport Name="pa_ObtenerDatoCategoria" ReturnType="Collection(pasteleriaModel.pa_ObtenerDatoCategoria_Result)">
+          <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_GuardarCategoria" ReturnType="Collection(pasteleriaModel.pa_GuardarCategoria_Result)">
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="nombreCategoria" Mode="In" Type="String" />
+            <Parameter Name="vigente" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="Usuario">
@@ -275,10 +305,6 @@
         </ComplexType>
         <ComplexType Name="pa_BajarProducto_Result" >
           <Property Type="String" Name="respuesta" Nullable="true" MaxLength="50" />
-        </ComplexType>
-        <ComplexType Name="pa_GuardarCategoria_Result">
-          <Property Type="Int32" Name="CodError" Nullable="true" />
-          <Property Type="String" Name="mensaje" Nullable="true" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="pa_RegistrarUsuario_Result" >
           <Property Type="String" Name="respuesta" Nullable="true" MaxLength="50" />
@@ -341,6 +367,45 @@
         </ComplexType>
         <ComplexType Name="pa_SubirUsuario_Result" >
           <Property Type="String" Name="respuesta" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_ListarProductoNoVigente_Result">
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="precion" Nullable="true" />
+          <Property Type="String" Name="nombreCategoria" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="pa_SubirProducto_Result" >
+          <Property Type="String" Name="respuesta" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_ObtenerDatoProducto_Result">
+          <Property Type="Int32" Name="idProducto" Nullable="false" />
+          <Property Type="Int32" Name="idCategoria" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="precion" Nullable="true" />
+          <Property Type="String" Name="descripcion" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="pa_ObtenerDatoUsuario_Result">
+          <Property Type="Int32" Name="idUsuario" Nullable="false" />
+          <Property Type="Int32" Name="idPerfil" Nullable="true" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="apellido" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="pass" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_ListarCategoria_Result">
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="vigente" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_ObtenerDatoCategoria_Result">
+          <Property Type="Int32" Name="idCategoria" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="vigente" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_GuardarCategoria_Result">
+          <Property Type="Int32" Name="CodError" Nullable="true" />
+          <Property Type="String" Name="mensaje" Nullable="true" MaxLength="50" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -443,14 +508,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pa_GuardarCategoria" FunctionName="pasteleriaModel.Store.pa_GuardarCategoria">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="pasteleriaModel.pa_GuardarCategoria_Result">
-                <ScalarProperty Name="CodError" ColumnName="CodError" />
-                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pa_RegistrarUsuario" FunctionName="pasteleriaModel.Store.pa_RegistrarUsuario" >
             <ResultMapping>
               <ComplexTypeMapping TypeName="pasteleriaModel.pa_RegistrarUsuario_Result">
@@ -486,6 +543,73 @@
             <ResultMapping>
               <ComplexTypeMapping TypeName="pasteleriaModel.pa_SubirUsuario_Result">
                 <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ListarProductoNoVigente" FunctionName="pasteleriaModel.Store.pa_ListarProductoNoVigente">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarProductoNoVigente_Result">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="precion" ColumnName="precion" />
+                <ScalarProperty Name="nombreCategoria" ColumnName="nombreCategoria" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_SubirProducto" FunctionName="pasteleriaModel.Store.pa_SubirProducto" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_SubirProducto_Result">
+                <ScalarProperty Name="respuesta" ColumnName="respuesta" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ObtenerDatoProducto" FunctionName="pasteleriaModel.Store.pa_ObtenerDatoProducto">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ObtenerDatoProducto_Result">
+                <ScalarProperty Name="idProducto" ColumnName="idProducto" />
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="precion" ColumnName="precion" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ObtenerDatoUsuario" FunctionName="pasteleriaModel.Store.pa_ObtenerDatoUsuario">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ObtenerDatoUsuario_Result">
+                <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+                <ScalarProperty Name="idPerfil" ColumnName="idPerfil" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ListarCategoria" FunctionName="pasteleriaModel.Store.pa_ListarCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarCategoria_Result">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ObtenerDatoCategoria" FunctionName="pasteleriaModel.Store.pa_ObtenerDatoCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ObtenerDatoCategoria_Result">
+                <ScalarProperty Name="idCategoria" ColumnName="idCategoria" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_GuardarCategoria" FunctionName="pasteleriaModel.Store.pa_GuardarCategoria">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_GuardarCategoria_Result">
+                <ScalarProperty Name="CodError" ColumnName="CodError" />
+                <ScalarProperty Name="mensaje" ColumnName="mensaje" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

@@ -49,11 +49,78 @@ namespace DbPastel
             }
         }
 
-        public List<pa_GuardarCategoria_Result> GuardarCategoria(int idCategoria, string nombreCategoria)
+        public List<pa_GuardarCategoria_Result> GuardarCategoria(int idCategoria, string nombreCategoria,bool vigente)
         {
             try
             {
-                var resp = modelo.pa_GuardarCategoria(idCategoria,nombreCategoria).ToList();
+                var resp = modelo.pa_GuardarCategoria(idCategoria,nombreCategoria,vigente).ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public List<pa_ListarProductoNoVigente_Result> ListarProductoNoVigente()
+        {
+            try
+            {
+                var resp = modelo.pa_ListarProductoNoVigente().ToList();
+                return resp;
+            }
+            catch (Exception ex) 
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<pa_SubirProducto_Result> SubirProducto(int idProducto)
+        {
+            try
+            {
+                var resp = modelo.pa_SubirProducto(idProducto).ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
+        public List<pa_ObtenerDatoProducto_Result> ObtenerDatoProducto(int idProducto)
+        {
+            try
+            {
+                var resp = modelo.pa_ObtenerDatoProducto(idProducto).ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<pa_ListarCategoria_Result> ListarCategoria()
+        {
+            try
+            {
+                var resp = modelo.pa_ListarCategoria().ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<pa_ObtenerDatoCategoria_Result> ObtenerDatoCategoria(int idCategoria)
+        {
+            try
+            {
+                var resp = modelo.pa_ObtenerDatoCategoria(idCategoria).ToList();
                 return resp;
             }
             catch (Exception ex)

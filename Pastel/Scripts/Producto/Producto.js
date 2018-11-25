@@ -33,11 +33,11 @@ $(document).ready(function () {
             { "data": "descripcion", "sClass": "text-left" },
             {
                 "data": "idProducto", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<center><button class='btn btn-danger btn-md' onclick='BajarProducto(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-trash'></i></button></center>");
+                    $(nTd).html("<center><button class='btn btn-warning btn-md' onclick='EditarProducto(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-edit' style='color:#ffffff;'></i></button></center>");
                 }
             }, {
                 "data": "idProducto", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<center><button class='btn btn-warning btn-md' onclick='EditarProducto(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-edit' style='color:#ffffff;'></i></button></center>");
+                    $(nTd).html("<center><button class='btn btn-danger btn-md' onclick='BajarProducto(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-arrow-down'></i></button></center>");
                 }
             }
         ]
@@ -112,6 +112,7 @@ function EditarProducto(codigo) {
                 $("#cboCategoria").val(item.idCategoria);
                 $("#txtDescProducto").val(item.descripcion);
             })
+            $("#btnGuardarProducto").click();
         },
         error: function (xhr, ajaxOptions, thrownError) {
             swal("Error detectado!", "Error al cargar los datos del producto", "error");
@@ -157,4 +158,12 @@ function BajarProducto(codigo) {
             swal("Cancelado", "Operación cancelada", "error");
         }
     })
+}
+
+function LimpiarCampoProducto(){
+    $("#idProducto").val(0);
+    $("#txtNombreProducto").val('');
+    $("#txtPrecio").val('');
+    $("#cboCategoria").val(0);
+    $("#txtDescProducto").val('');
 }

@@ -5,7 +5,7 @@
 }
 
 @* Modal para Guardar Producto *@
-<div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modalProducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -43,6 +43,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
+                    <label for="txtImg" class="col-sm-2 col-form-label">Imagen</label>
+                    <div class="col-sm-10">
+                        <input type="file"/>
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label for="txtDescProducto" class="col-sm-2 col-form-label">Descripción</label>
                     <div class="col-sm-10">
                         <textarea id="txtDescProducto" class="form-control" placeholder="Descripción"></textarea>
@@ -51,7 +57,7 @@
                 
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" style="float:left;" data-dismiss="modal" id="closeModalProducto">Cerrar</button>
+                <button type="button" class="btn btn-danger pull-left" data-dismiss="modal" id="closeModalProducto" onclick="LimpiarCampoProducto()">Cerrar</button>
                 <button type="button" class="btn btn-success" onclick="GuardarProducto()">Guardar Producto</button>
             </div>
         </div>
@@ -77,7 +83,7 @@
                     <th>Categoria</th>
                     <th>Descripción</th>
                     <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>Dar de Baja</th>
                 </tr>
             </thead>
         </table>

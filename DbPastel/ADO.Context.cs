@@ -133,23 +133,6 @@ public partial class pasteleriaEntities : DbContext
     }
 
 
-    public virtual ObjectResult<pa_GuardarCategoria_Result> pa_GuardarCategoria(Nullable<int> idCategoria, string nombreCategoria)
-    {
-
-        var idCategoriaParameter = idCategoria.HasValue ?
-            new ObjectParameter("idCategoria", idCategoria) :
-            new ObjectParameter("idCategoria", typeof(int));
-
-
-        var nombreCategoriaParameter = nombreCategoria != null ?
-            new ObjectParameter("nombreCategoria", nombreCategoria) :
-            new ObjectParameter("nombreCategoria", typeof(string));
-
-
-        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_GuardarCategoria_Result>("pa_GuardarCategoria", idCategoriaParameter, nombreCategoriaParameter);
-    }
-
-
     public virtual ObjectResult<pa_RegistrarUsuario_Result> pa_RegistrarUsuario(Nullable<int> idUsuario, string nombre, string apellido, string email, string pass, Nullable<int> idPerfil)
     {
 
@@ -203,6 +186,90 @@ public partial class pasteleriaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_SubirUsuario_Result>("pa_SubirUsuario", idUsuarioParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ListarProductoNoVigente_Result> pa_ListarProductoNoVigente()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarProductoNoVigente_Result>("pa_ListarProductoNoVigente");
+    }
+
+
+    public virtual ObjectResult<pa_SubirProducto_Result> pa_SubirProducto(Nullable<int> idProducto)
+    {
+
+        var idProductoParameter = idProducto.HasValue ?
+            new ObjectParameter("idProducto", idProducto) :
+            new ObjectParameter("idProducto", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_SubirProducto_Result>("pa_SubirProducto", idProductoParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ObtenerDatoProducto_Result> pa_ObtenerDatoProducto(Nullable<int> idProducto)
+    {
+
+        var idProductoParameter = idProducto.HasValue ?
+            new ObjectParameter("idProducto", idProducto) :
+            new ObjectParameter("idProducto", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ObtenerDatoProducto_Result>("pa_ObtenerDatoProducto", idProductoParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ObtenerDatoUsuario_Result> pa_ObtenerDatoUsuario(Nullable<int> idUsuario)
+    {
+
+        var idUsuarioParameter = idUsuario.HasValue ?
+            new ObjectParameter("idUsuario", idUsuario) :
+            new ObjectParameter("idUsuario", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ObtenerDatoUsuario_Result>("pa_ObtenerDatoUsuario", idUsuarioParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ListarCategoria_Result> pa_ListarCategoria()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarCategoria_Result>("pa_ListarCategoria");
+    }
+
+
+    public virtual ObjectResult<pa_ObtenerDatoCategoria_Result> pa_ObtenerDatoCategoria(Nullable<int> idCategoria)
+    {
+
+        var idCategoriaParameter = idCategoria.HasValue ?
+            new ObjectParameter("idCategoria", idCategoria) :
+            new ObjectParameter("idCategoria", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ObtenerDatoCategoria_Result>("pa_ObtenerDatoCategoria", idCategoriaParameter);
+    }
+
+
+    public virtual ObjectResult<pa_GuardarCategoria_Result> pa_GuardarCategoria(Nullable<int> idCategoria, string nombreCategoria, Nullable<bool> vigente)
+    {
+
+        var idCategoriaParameter = idCategoria.HasValue ?
+            new ObjectParameter("idCategoria", idCategoria) :
+            new ObjectParameter("idCategoria", typeof(int));
+
+
+        var nombreCategoriaParameter = nombreCategoria != null ?
+            new ObjectParameter("nombreCategoria", nombreCategoria) :
+            new ObjectParameter("nombreCategoria", typeof(string));
+
+
+        var vigenteParameter = vigente.HasValue ?
+            new ObjectParameter("vigente", vigente) :
+            new ObjectParameter("vigente", typeof(bool));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_GuardarCategoria_Result>("pa_GuardarCategoria", idCategoriaParameter, nombreCategoriaParameter, vigenteParameter);
     }
 
 }

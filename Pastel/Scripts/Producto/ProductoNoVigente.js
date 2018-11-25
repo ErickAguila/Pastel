@@ -1,8 +1,8 @@
-﻿var tablaUsuarioNoVigente
+﻿var tablaProductoNoVigente
 $(document).ready(function () {
-    CargarDatosTablaUsuarioNoVigente();
+    CargarDatosTablaProductoNoVigente();
     $.fn.dataTable.ext.errMode = 'throw'
-    tablaUsuarioNoVigente = $('#TbListarUsuarioNoVigente').dataTable({
+    tablaProductoNoVigente = $('#TbListarProductoNoVigente').dataTable({
         'bJQueryUI': true,
         'bLengthChange': true,
         'scrollCollapse': true,
@@ -28,12 +28,12 @@ $(document).ready(function () {
 
         "columns": [
             { "data": "nombre", "sClass": "text-left" },
-            { "data": "apellido", "sClass": "text-left" },
-            { "data": "email", "sClass": "text-left" },
-            { "data": "nombrePerfil", "sClass": "text-left" },
+            { "data": "precion", "sClass": "text-left" },
+            { "data": "nombreCategoria", "sClass": "text-left" },
+            { "data": "descripcion", "sClass": "text-left" },
             {
-                "data": "idUsuario", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
-                    $(nTd).html("<center><button class='btn btn-primary btn-md' onclick='SubirUsuario(" + oData.idUsuario + ")' style='cursor:pointer;'><i class='fa fa-arrow-up' style='color:#ffffff;'></i></button></center>");
+                "data": "idProducto", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<center><button class='btn btn-primary btn-md' onclick='SubirProducto(" + oData.idProducto + ")' style='cursor:pointer;'><i class='fa fa-arrow-up'></i></button></center>");
                 }
             }
         ]
@@ -41,30 +41,30 @@ $(document).ready(function () {
 });
 
 
-function CargarDatosTablaUsuarioNoVigente() {
+function CargarDatosTablaProductoNoVigente() {
     $.ajax({
         dataType: "json",
         type: "POST",
-        url: "/Usuario/ListarUsuarioNoVigente",
+        url: "/Producto/ListarProductoNoVigente",
         async: true,
         success: function (result) {
-            LlenarDatosTablaUsuarioNoVigente(result);
+            LlenarDatosTablaProductoNoVigente(result);
         },
         error: function (xhr, ajaxOptions, thrownError) {
-            swal("Error detectado!", "Error al cargar los usuario no vigente", "error");
+            swal("Error detectado!", "Por favor vuelva a intentarlo", "error");
         }
     });
 }
 
-function LlenarDatosTablaUsuarioNoVigente(respuesta) {
-    tablaUsuarioNoVigente.fnClearTable();
-    tablaUsuarioNoVigente.fnAddData(respuesta);
+function LlenarDatosTablaProductoNoVigente(respuesta) {
+    tablaProductoNoVigente.fnClearTable();
+    tablaProductoNoVigente.fnAddData(respuesta);
 }
 
-function SubirUsuario(codigo) {
+function SubirProducto(codigo) {
     swal({
         title: "¿Está seguro?",
-        text: "Se subirá el Usuario!",
+        text: "Se subirá el Producto!",
         icon: "warning",
         buttons: [
           'No, cancelar!',
@@ -75,21 +75,21 @@ function SubirUsuario(codigo) {
         if (isConfirm) {
             $.ajax({
                 type: "POST",
-                url: "/Usuario/SubirUsuario",
-                data: { idUsuario: codigo },
+                url: "/Producto/SubirProducto",
+                data: { idProducto: codigo },
                 success: function (resultado) {
                     if (resultado == 'ok') {
                         swal({
                             title: 'Excelente!',
-                            text: 'Usuario se subio con éxito!',
+                            text: 'El Producto se subio con éxito!',
                             icon: 'success'
                         }).then(function () {
-                            CargarDatosTablaUsuarioNoVigente();
+                            CargarDatosTablaProductoNoVigente();
                         });
                     }
 
                     if (resultado == 'no existe') {
-                        swal("Error detectado!", "Error al subir el usuario", "error");
+                        swal("Error detectado!", "Error al subir el Producto", "error");
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

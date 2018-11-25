@@ -76,5 +76,18 @@ namespace DbPastel
             }
         }
 
+        public List<pa_ObtenerDatoUsuario_Result> ObtenerDatoUsuario(int idUsuario)
+        {
+            try
+            {
+                var resp = modelo.pa_ObtenerDatoUsuario(idUsuario).ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
