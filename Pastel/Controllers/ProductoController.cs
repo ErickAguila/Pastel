@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using DbPastel;
 using Newtonsoft.Json;
+using System.Web.Http;
 
 namespace Pastel.Controllers
 {
@@ -37,6 +38,11 @@ namespace Pastel.Controllers
         }
 
         public ActionResult MantenedorCategoria()
+        {
+            return View();
+        }
+
+        public ActionResult Pedidos()
         {
             return View();
         }
@@ -161,6 +167,49 @@ namespace Pastel.Controllers
                 Cl_Producto producto = new Cl_Producto();
                 var resp = producto.SubirProducto(idProducto);
                 return resp.First().respuesta;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public String ComprarProducto(int idProducto, int idCategoria,int cantidad, int precio)
+        {
+            try
+            {
+                Cl_Producto producto = new Cl_Producto();
+                int idUsuario = Convert.ToInt32(Session["idUsuario"]);
+                var resp = producto.CrearBoleta(idUsuario, idProducto, idCategoria, cantidad, precio);
+                return resp.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public String ListarVentas()
+        {
+            try
+            {
+                Cl_Producto producto = new Cl_Producto();
+                var lista = producto.ListarVentas();
+                return JsonConvert.SerializeObject(lista).ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+        
+        public String ListarPedidos()
+        {
+            try
+            {
+                Cl_Producto producto = new Cl_Producto();
+                var lista = producto.ListarPedidos();
+                return JsonConvert.SerializeObject(lista).ToString();
             }
             catch (Exception ex)
             {

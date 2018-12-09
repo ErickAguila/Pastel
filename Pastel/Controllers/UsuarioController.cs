@@ -22,6 +22,16 @@ namespace Pastel.Controllers
             return View();
         }
 
+        public ActionResult MiPerfil()
+        {
+            return View();
+        }
+
+        public ActionResult MiPedido()
+        {
+            return View();
+        }
+
         public String RegistrarUsuario(int idUsuario, string nombre, string apellido, string email, string pass, int idPerfil)
         {
             try
@@ -41,7 +51,16 @@ namespace Pastel.Controllers
             try
             {
                 Cl_Usuario usuario = new Cl_Usuario();
-                var listar = usuario.ObtenerDatoUsuario(idUsuario);
+                var idUsu = 0;
+                var usu = Convert.ToInt32(Session["idUsuario"]);
+                if (idUsuario == 0)
+                {
+                    idUsu = usu;
+                }
+                else {
+                    idUsu = idUsuario;
+                }
+                var listar = usuario.ObtenerDatoUsuario(idUsu);
                 return JsonConvert.SerializeObject(listar).ToString();
             }
             catch (Exception ex)
@@ -106,5 +125,21 @@ namespace Pastel.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
+        public String ListarMisPedidos()
+        {
+            try
+            {
+                Cl_Usuario usuario = new Cl_Usuario();
+                var idUsuario = Convert.ToInt32(Session["idUsuario"]);
+                var lista = usuario.ListarMisPerdidos(idUsuario);
+                return JsonConvert.SerializeObject(lista).ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

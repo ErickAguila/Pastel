@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "Pedidos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Lista de Pedidos</h2>
+
+<div class="container">
+    <div class="row" style="margin-top:20px;">
+        <div class="col-md-12">
+            <table class="table table-striped" style="width:100%" id="TbListarPedido">
+                <thead>
+                    <tr>
+                        <th>N° Boleta</th>
+                        <th>Nombre producto</th>
+                        <th>Categoria</th>
+                        <th>Fecha compra</th>
+                        <th>Cantidad</th>
+                        <th>Precio Unitario</th>
+                        <th>Total compra</th>
+                        <th>Estado producto</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+</div>
+@section JavaScript{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Producto/Pedidos.js")"></script>
+}

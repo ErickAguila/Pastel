@@ -25,6 +25,14 @@
           <Property Name="nombre" Type="varchar" MaxLength="100" />
           <Property Name="vigente" Type="bit" />
         </EntityType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idBoleta" Type="int" />
+          <Property Name="idProductoEstado" Type="int" />
+        </EntityType>
         <EntityType Name="Perfil">
           <Key>
             <PropertyRef Name="idPerfil" />
@@ -44,6 +52,14 @@
           <Property Name="descripcion" Type="varchar" MaxLength="200" />
           <Property Name="vigente" Type="bit" />
         </EntityType>
+        <EntityType Name="ProductoEstado">
+          <Key>
+            <PropertyRef Name="idProductoEstato" />
+          </Key>
+          <Property Name="idProductoEstato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="vigente" Type="bit" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
@@ -56,6 +72,18 @@
           <Property Name="pass" Type="varchar" MaxLength="50" />
           <Property Name="vigente" Type="bit" />
         </EntityType>
+        <Association Name="FK_boleta_Producto">
+          <End Role="Producto" Type="Self.Producto" Multiplicity="0..1" />
+          <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_boleta_Usuario">
           <End Role="Usuario" Type="Self.Usuario" Multiplicity="0..1" />
           <End Role="boleta" Type="Self.boleta" Multiplicity="*" />
@@ -98,6 +126,13 @@
         <Function Name="pa_BajarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idUsuario" Type="int" Mode="In" />
         </Function>
+        <Function Name="pa_CrearBoleta" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+          <Parameter Name="idCategoria" Type="int" Mode="In" />
+          <Parameter Name="cantidad" Type="int" Mode="In" />
+          <Parameter Name="precio" Type="int" Mode="In" />
+        </Function>
         <Function Name="pa_GuardarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCategoria" Type="int" Mode="In" />
           <Parameter Name="nombreCategoria" Type="varchar" Mode="In" />
@@ -111,10 +146,15 @@
           <Parameter Name="descripcion" Type="varchar" Mode="In" />
         </Function>
         <Function Name="pa_ListarCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_ListarMisPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idUsuario" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pa_ListarPedidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarProducto" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarProductoNoVigente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ListarUsuarioNoVigente" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="pa_ListarVentas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_Login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="pass" Type="varchar" Mode="In" />
@@ -145,9 +185,15 @@
         <EntityContainer Name="pasteleriaModelStoreContainer">
           <EntitySet Name="boleta" EntityType="Self.boleta" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Categoria" EntityType="Self.Categoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pedido" EntityType="Self.Pedido" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Perfil" EntityType="Self.Perfil" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Producto" EntityType="Self.Producto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductoEstado" EntityType="Self.ProductoEstado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_boleta_Producto" Association="Self.FK_boleta_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
           <AssociationSet Name="FK_boleta_Usuario" Association="Self.FK_boleta_Usuario">
             <End Role="Usuario" EntitySet="Usuario" />
             <End Role="boleta" EntitySet="boleta" />
@@ -194,6 +240,7 @@
           <Property Name="descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="vigente" Type="Boolean" />
           <NavigationProperty Name="Categoria" Relationship="pasteleriaModel.FK_Producto_Categoria" FromRole="Producto" ToRole="Categoria" />
+          <NavigationProperty Name="boleta" Relationship="pasteleriaModel.FK_boleta_Producto" FromRole="Producto" ToRole="boleta" />
         </EntityType>
         <EntityContainer Name="pasteleriaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
@@ -263,6 +310,24 @@
             <Parameter Name="nombreCategoria" Mode="In" Type="String" />
             <Parameter Name="vigente" Mode="In" Type="Boolean" />
           </FunctionImport>
+          <FunctionImport Name="pa_CrearBoleta" ReturnType="Collection(String)">
+            <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="idProducto" Mode="In" Type="Int32" />
+            <Parameter Name="idCategoria" Mode="In" Type="Int32" />
+            <Parameter Name="cantidad" Mode="In" Type="Int32" />
+            <Parameter Name="precio" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ListarVentas" ReturnType="Collection(pasteleriaModel.pa_ListarVentas_Result)" />
+          <EntitySet Name="Pedido" EntityType="pasteleriaModel.Pedido" />
+          <EntitySet Name="ProductoEstado" EntityType="pasteleriaModel.ProductoEstado" />
+          <AssociationSet Name="FK_boleta_Producto" Association="pasteleriaModel.FK_boleta_Producto">
+            <End Role="Producto" EntitySet="Producto" />
+            <End Role="boleta" EntitySet="boleta" />
+          </AssociationSet>
+          <FunctionImport Name="pa_ListarMisPedidos" ReturnType="Collection(pasteleriaModel.pa_ListarMisPedidos_Result)">
+          <Parameter Name="idUsuario" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pa_ListarPedidos" ReturnType="Collection(pasteleriaModel.pa_ListarPedidos_Result)" />
         </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
@@ -345,6 +410,7 @@
           <Property Name="precio" Type="Int32" />
           <Property Name="fechaCompra" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Usuario" Relationship="pasteleriaModel.FK_boleta_Usuario" FromRole="boleta" ToRole="Usuario" />
+          <NavigationProperty Name="Producto" Relationship="pasteleriaModel.FK_boleta_Producto" FromRole="boleta" ToRole="Producto" />
         </EntityType>
         <Association Name="FK_boleta_Usuario">
           <End Type="pasteleriaModel.Usuario" Role="Usuario" Multiplicity="0..1" />
@@ -406,6 +472,63 @@
         <ComplexType Name="pa_GuardarCategoria_Result">
           <Property Type="Int32" Name="CodError" Nullable="true" />
           <Property Type="String" Name="mensaje" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pa_ListarVentas_Result">
+          <Property Type="Int32" Name="idBoleta" Nullable="false" />
+          <Property Type="String" Name="nombreUsuario" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombreProducto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="fechaCompra" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="Int32" Name="precio" Nullable="true" />
+          <Property Type="Int32" Name="total" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="Pedido">
+          <Key>
+            <PropertyRef Name="idPedido" />
+          </Key>
+          <Property Name="idPedido" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idBoleta" Type="Int32" />
+          <Property Name="idProductoEstado" Type="Int32" />
+        </EntityType>
+        <EntityType Name="ProductoEstado">
+          <Key>
+            <PropertyRef Name="idProductoEstato" />
+          </Key>
+          <Property Name="idProductoEstato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="vigente" Type="Boolean" />
+        </EntityType>
+        <Association Name="FK_boleta_Producto">
+          <End Type="pasteleriaModel.Producto" Role="Producto" Multiplicity="0..1" />
+          <End Type="pasteleriaModel.boleta" Role="boleta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Producto">
+              <PropertyRef Name="idProducto" />
+            </Principal>
+            <Dependent Role="boleta">
+              <PropertyRef Name="idProducto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="pa_ListarMisPedidos_Result">
+          <Property Type="Int32" Name="idBoleta" Nullable="false" />
+          <Property Type="String" Name="nombreProducto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombreCategoria" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="Int32" Name="precio" Nullable="true" />
+          <Property Type="String" Name="fechaCompra" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="total" Nullable="true" />
+          <Property Type="Int32" Name="idProductoEstado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_ListarPedidos_Result">
+          <Property Type="Int32" Name="idBoleta" Nullable="false" />
+          <Property Type="String" Name="nombreProducto" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nombreCategoria" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
+          <Property Type="Int32" Name="precio" Nullable="true" />
+          <Property Type="String" Name="fechaCompra" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="total" Nullable="true" />
+          <Property Type="Int32" Name="idProductoEstado" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -610,6 +733,66 @@
               <ComplexTypeMapping TypeName="pasteleriaModel.pa_GuardarCategoria_Result">
                 <ScalarProperty Name="CodError" ColumnName="CodError" />
                 <ScalarProperty Name="mensaje" ColumnName="mensaje" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_CrearBoleta" FunctionName="pasteleriaModel.Store.pa_CrearBoleta" />
+          <FunctionImportMapping FunctionImportName="pa_ListarVentas" FunctionName="pasteleriaModel.Store.pa_ListarVentas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarVentas_Result">
+                <ScalarProperty Name="idBoleta" ColumnName="idBoleta" />
+                <ScalarProperty Name="nombreUsuario" ColumnName="nombreUsuario" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="total" ColumnName="total" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="Pedido">
+            <EntityTypeMapping TypeName="pasteleriaModel.Pedido">
+              <MappingFragment StoreEntitySet="Pedido">
+                <ScalarProperty Name="idProductoEstado" ColumnName="idProductoEstado" />
+                <ScalarProperty Name="idBoleta" ColumnName="idBoleta" />
+                <ScalarProperty Name="idPedido" ColumnName="idPedido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductoEstado">
+            <EntityTypeMapping TypeName="pasteleriaModel.ProductoEstado">
+              <MappingFragment StoreEntitySet="ProductoEstado">
+                <ScalarProperty Name="vigente" ColumnName="vigente" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idProductoEstato" ColumnName="idProductoEstato" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pa_ListarMisPedidos" FunctionName="pasteleriaModel.Store.pa_ListarMisPedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarMisPedidos_Result">
+                <ScalarProperty Name="idBoleta" ColumnName="idBoleta" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="nombreCategoria" ColumnName="nombreCategoria" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="idProductoEstado" ColumnName="idProductoEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ListarPedidos" FunctionName="pasteleriaModel.Store.pa_ListarPedidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ListarPedidos_Result">
+                <ScalarProperty Name="idBoleta" ColumnName="idBoleta" />
+                <ScalarProperty Name="nombreProducto" ColumnName="nombreProducto" />
+                <ScalarProperty Name="nombreCategoria" ColumnName="nombreCategoria" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="idProductoEstado" ColumnName="idProductoEstado" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

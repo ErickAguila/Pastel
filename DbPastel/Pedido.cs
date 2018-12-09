@@ -15,28 +15,14 @@ namespace DbPastel
 using System;
     using System.Collections.Generic;
     
-public partial class boleta
+public partial class Pedido
 {
 
-    public int idBoleta { get; set; }
+    public int idPedido { get; set; }
 
-    public Nullable<int> idUsuario { get; set; }
+    public Nullable<int> idBoleta { get; set; }
 
-    public Nullable<int> idProducto { get; set; }
-
-    public Nullable<int> idCategoria { get; set; }
-
-    public Nullable<int> cantidad { get; set; }
-
-    public Nullable<int> precio { get; set; }
-
-    public Nullable<System.DateTime> fechaCompra { get; set; }
-
-
-
-    public virtual Usuario Usuario { get; set; }
-
-    public virtual Producto Producto { get; set; }
+    public Nullable<int> idProductoEstado { get; set; }
 
 }
 

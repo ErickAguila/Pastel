@@ -35,9 +35,15 @@ namespace Pastel.Controllers
             return View();
         }
 
+        public ActionResult Resumen()
+        {
+            return View();
+        }
+
         public String FinSession()
         {
             Session.Abandon();
+            Session.Clear();
             return "ok";
         }
 
@@ -53,6 +59,7 @@ namespace Pastel.Controllers
                     var usuario = modelo.Usuario.Where(u => u.email == user && u.pass == pass);
                     Session["NombreUsuario"] = usuario.First().nombre;
                     Session["PerfilUsuario"] = usuario.First().idPerfil;
+                    Session["idUsuario"] = usuario.First().idUsuario;
                     return "ok";
                 }
                 else {

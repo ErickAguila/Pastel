@@ -45,6 +45,10 @@ public partial class pasteleriaEntities : DbContext
 
     public virtual DbSet<boleta> boleta { get; set; }
 
+    public virtual DbSet<Pedido> Pedido { get; set; }
+
+    public virtual DbSet<ProductoEstado> ProductoEstado { get; set; }
+
 
     public virtual ObjectResult<pa_Login_Result> pa_Login(string email, string pass)
     {
@@ -270,6 +274,64 @@ public partial class pasteleriaEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_GuardarCategoria_Result>("pa_GuardarCategoria", idCategoriaParameter, nombreCategoriaParameter, vigenteParameter);
+    }
+
+
+    public virtual ObjectResult<string> pa_CrearBoleta(Nullable<int> idUsuario, Nullable<int> idProducto, Nullable<int> idCategoria, Nullable<int> cantidad, Nullable<int> precio)
+    {
+
+        var idUsuarioParameter = idUsuario.HasValue ?
+            new ObjectParameter("idUsuario", idUsuario) :
+            new ObjectParameter("idUsuario", typeof(int));
+
+
+        var idProductoParameter = idProducto.HasValue ?
+            new ObjectParameter("idProducto", idProducto) :
+            new ObjectParameter("idProducto", typeof(int));
+
+
+        var idCategoriaParameter = idCategoria.HasValue ?
+            new ObjectParameter("idCategoria", idCategoria) :
+            new ObjectParameter("idCategoria", typeof(int));
+
+
+        var cantidadParameter = cantidad.HasValue ?
+            new ObjectParameter("cantidad", cantidad) :
+            new ObjectParameter("cantidad", typeof(int));
+
+
+        var precioParameter = precio.HasValue ?
+            new ObjectParameter("precio", precio) :
+            new ObjectParameter("precio", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pa_CrearBoleta", idUsuarioParameter, idProductoParameter, idCategoriaParameter, cantidadParameter, precioParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ListarVentas_Result> pa_ListarVentas()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarVentas_Result>("pa_ListarVentas");
+    }
+
+
+    public virtual ObjectResult<pa_ListarMisPedidos_Result> pa_ListarMisPedidos(Nullable<int> idUsuario)
+    {
+
+        var idUsuarioParameter = idUsuario.HasValue ?
+            new ObjectParameter("idUsuario", idUsuario) :
+            new ObjectParameter("idUsuario", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarMisPedidos_Result>("pa_ListarMisPedidos", idUsuarioParameter);
+    }
+
+
+    public virtual ObjectResult<pa_ListarPedidos_Result> pa_ListarPedidos()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarPedidos_Result>("pa_ListarPedidos");
     }
 
 }

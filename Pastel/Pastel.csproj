@@ -208,6 +208,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\FileUploadController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
@@ -223,6 +224,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ChartJs.js" />
     <Content Include="Content\DataTable\DataTable.css" />
     <Content Include="Content\DataTable\DataTable.js" />
     <Content Include="Content\DataTable\DataTableBootstrap.css" />
@@ -266,6 +268,7 @@
     <Content Include="Content\Template\img\core-img\preload-2.png" />
     <Content Include="Content\Template\img\core-img\preload-3.png" />
     <Content Include="Content\Template\img\core-img\special-dots.png" />
+    <Content Include="Content\Template\img\donas.png" />
     <Content Include="Content\Template\img\icons\cancel.svg" />
     <Content Include="Content\Template\img\icons\email.svg" />
     <Content Include="Content\Template\img\icons\left-arrow.svg" />
@@ -312,6 +315,7 @@
     <Content Include="Content\Template\fonts\Pe-icon-7-stroke.woff" />
     <None Include="Properties\PublishProfiles\Produccion.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\FileUpload\file.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -321,10 +325,15 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Producto\Categoria.js" />
+    <Content Include="Scripts\Producto\HomeProducto.js" />
+    <Content Include="Scripts\Producto\Pedidos.js" />
     <Content Include="Scripts\Producto\Producto.js" />
     <Content Include="Scripts\Producto\ProductoNoVigente.js" />
+    <Content Include="Scripts\Producto\Ventas.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\Usuario\MiPedido.js" />
+    <Content Include="Scripts\Usuario\MiPerfil.js" />
     <Content Include="Scripts\Usuario\Usuario.js" />
     <Content Include="Scripts\Usuario\UsuarioNoVigente.js" />
     <Content Include="Scripts\_references.js" />
@@ -353,9 +362,14 @@
     <Content Include="Views\Home\Productos.cshtml" />
     <Content Include="Views\Usuario\ManteneodrUsuarioNoVigente.cshtml" />
     <Content Include="Views\Producto\MantenedorProductoNoVigente.cshtml" />
+    <Content Include="Views\Usuario\MiPerfil.cshtml" />
+    <Content Include="Views\Usuario\MiPedido.cshtml" />
+    <Content Include="Views\Home\Resumen.cshtml" />
+    <Content Include="Views\Producto\Pedidos.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Upload\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

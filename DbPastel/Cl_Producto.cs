@@ -129,5 +129,44 @@ namespace DbPastel
             }
         }
 
+        public String CrearBoleta(int idUsuario, int idProducto, int idCategoria,int cantidad, int precio)
+        {
+            try
+            {
+                var resp = modelo.pa_CrearBoleta(idUsuario, idProducto, idCategoria, cantidad, precio);
+                return resp.ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<pa_ListarVentas_Result> ListarVentas()
+        {
+            try
+            {
+                var resp = modelo.pa_ListarVentas().ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<pa_ListarPedidos_Result> ListarPedidos()
+        {
+            try
+            {
+                var resp = modelo.pa_ListarPedidos().ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

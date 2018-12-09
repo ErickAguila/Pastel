@@ -13,6 +13,13 @@
     <link href="~/Content/Template/style.css" rel="stylesheet">
     <link href="~/Content/Template/css/responsive/responsive.css" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Tangerine" rel="stylesheet">
+    <style>
+        .titulo-logo {
+            font-family: 'Tangerine', cursive;
+            font-size: 40px;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,11 +39,11 @@
             <div class="row h-100">
                 <div class="col-12 h-100">
                     <nav class="h-100 navbar navbar-expand-lg align-items-center">
-                        <a class="navbar-brand" href="index.html">Pasteleria</a>
+                        <a class="navbar-brand titulo-logo" href="/Home/Home">Dulce Recuerdo</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#caviarNav" aria-controls="caviarNav" aria-expanded="false" aria-label="Toggle navigation"><span class="fa fa-bars"></span></button>
                         <div class="collapse navbar-collapse" id="caviarNav">
                             <ul class="navbar-nav ml-auto" id="caviarMenu">
-                                <li class="nav-item active">
+                                <li class="nav-item">
                                     <a class="nav-link" href="/Home/Home">Home</a>
                                 </li>
                                 <li class="nav-item">
@@ -63,19 +70,20 @@
                                                     }
                                                     if (ViewBag.idPerfilUsuario == "2") //Cliente
                                                     {
-                                                        <a class="dropdown-item" href="#">Mi perfil</a>
+                                                        <a class="dropdown-item" href="/Usuario/MiPedido">Lista de Compras</a>
+                                                        <a class="dropdown-item" href="/Usuario/MiPerfil">Mi perfil</a>
                                                     }
                                                 }
                                                 <a class="dropdown-item" href="#" onclick="Logout()">Cerrar Sesión</a>
                                             </div>
                                         </li>
-                                    }
-                                    else
-                                    {
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/Home/index">Ingresar</a>
-                                        </li>
-                                    }
+                                                    }
+                                                    else
+                                                    {
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="/Home/index">Ingresar</a>
+                                                        </li>
+                                                    }
                                 }
                             </ul>
                         </div>
@@ -113,247 +121,46 @@
                         <div class="text-center portfolio-menu">
                             <button class="active" data-filter="*">Todo</button>
                             <button data-filter=".breakfast">Desayuno</button>
-                            <button data-filter=".lunch">Almuerzo</button>
-                            <button data-filter=".dinner">Cena</button>
+                            <button data-filter=".lunch">Tortas</button>
+                            <button data-filter=".dinner">Pasteles</button>
                         </div>
                     </div>
 
-                    <div class="caviar-menu-slides owl-carousel clearfix">
-
-                        <div class="caviar-portfolio clearfix">
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item breakfast wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                        <i class="fa fa-shopping-cart"></i>
+                    <!-- Modal -->
+                    <div class="modal fade" id="ModalBuyProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" style="margin-top:9%;">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Comprar Producto</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <input type="text" id="txtIdProducto" style="display:none" />
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <img src="~/Content/Template/img/donas.png" />
+                                        </div>
+                                        <div class="col-md-6">
+                                            <h4 id="txtNombreProcuto"></h4>
+                                            <p id="txtDescProducto"></p>
+                                            <label>Precio: <span id="txtPrecioProducto"></span></label><br />
+                                            <label>Cantidad: <input id="txtCantidad" type="number" class="form-control" value="1"/></label>
+                                            <label>Total: <span id="txtTotal"></span></label>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item breakfast dinner wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item lunch wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-3.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item lunch wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item dinner wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-success" onclick="ComprarProducto()">Comprar <i class="fa fa-shopping-cart"></i></button>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="caviar-portfolio clearfix">
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item breakfast wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item breakfast dinner wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item lunch wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-3.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item lunch wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item dinner wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="caviar-menu-slides owl-carousel clearfix" id="list-producto">
 
-                        <div class="caviar-portfolio clearfix">
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item breakfast wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item breakfast dinner wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item lunch wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-3.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item lunch wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Gallery Item -->
-                            <div class="single_menu_item dinner wow fadeInUp">
-                                <div class="d-sm-flex align-items-center">
-                                    <div class="dish-thumb">
-                                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                                    </div>
-                                    <div class="dish-description">
-                                        <h3>Lorem Ipsum Dolor Sit Amet</h3>
-                                        <p>Sed commodo augue eu diam tincidunt, sit amet auctor lectus semper. Mauris porttitor diam at fringilla tempor.</p>
-                                    </div>
-                                    <div class="dish-value">
-                                        <h3>$45</h3>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                 </div>
@@ -361,55 +168,13 @@
         </div>
     </div>
     <!-- ***** Menu Area End ***** -->
-    <!-- ***** Special Menu Area Start ***** -->
-    <section class="caviar-dish-menu clearfix" id="menu">
-        <div class="container">
-            <div class="row">
-                <div class="col-12 menu-heading">
-                    <div class="section-heading text-center">
-                        <h2>Special</h2>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="caviar-single-dish wow fadeInUp" data-wow-delay="0.5s">
-                        <img src="~/Content/Template/img/menu-img/dish-1.png" alt="">
-                        <div class="dish-info">
-                            <h6 class="dish-name">Lorem Ipsum Dolor Sit Amet</h6>
-                            <p class="dish-price">$45</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="caviar-single-dish wow fadeInUp" data-wow-delay="1s">
-                        <img src="~/Content/Template/img/menu-img/dish-2.png" alt="">
-                        <div class="dish-info">
-                            <h6 class="dish-name">Lorem Ipsum</h6>
-                            <p class="dish-price">$45</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-md-4">
-                    <div class="caviar-single-dish wow fadeInUp" data-wow-delay="1.5s">
-                        <img src="~/Content/Template/img/menu-img/dish-3.png" alt="">
-                        <div class="dish-info">
-                            <h6 class="dish-name">Lorem Ipsum Dolor Sit Amet</h6>
-                            <p class="dish-price">$45</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- ***** Special Menu Area End ***** -->
     <!-- ***** Footer Area Start ***** -->
     <footer class="caviar-footer-area">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="footer-text">
-                        <a href="#" class="navbar-brand">Pasteleria</a>
+                        <a href="#" class="navbar-brand titulo-logo">Dulce Recuerdo</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         <p>
                             Copyright &copy;
@@ -422,11 +187,12 @@
         </div>
     </footer>
     <!-- ***** Footer Area Start ***** -->
-    <!-- jQuery-2.2.4 js -->
     <script src="~/Content/Template/js/jquery/jquery-2.2.4.min.js"></script>
     <script src="~/Content/Template/js/bootstrap/popper.min.js"></script>
     <script src="~/Content/Template/js/bootstrap/bootstrap.min.js"></script>
     <script src="~/Content/Template/js/others/plugins.js"></script>
     <script src="~/Content/Template/js/active.js"></script>
+    <script src="~/Content/Home/Sweetalert.js"></script>
+    <script src="~/Scripts/Producto/HomeProducto.js"></script>
 </body>
 </html>

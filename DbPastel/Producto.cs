@@ -18,6 +18,15 @@ using System;
 public partial class Producto
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public Producto()
+    {
+
+        this.boleta = new HashSet<boleta>();
+
+    }
+
+
     public int idProducto { get; set; }
 
     public Nullable<int> idCategoria { get; set; }
@@ -33,6 +42,10 @@ public partial class Producto
 
 
     public virtual Categoria Categoria { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<boleta> boleta { get; set; }
 
 }
 

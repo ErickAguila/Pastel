@@ -12,6 +12,12 @@
         $wrap.addClass('loginActive');
         $wrap.removeClass('singUpActive');
     });
+
+    $("body").keyup(function (e) {
+        if (e.keyCode == 13) {
+            Login();
+        }
+    });
 });
 
 function Login() {

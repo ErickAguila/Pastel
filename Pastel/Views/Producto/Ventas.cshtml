@@ -6,3 +6,23 @@
 
 <h2>Ventas</h2>
 
+<div class="row" style="margin-top:20px;">
+    <div class="col-md-12">
+        <table class="table table-striped" style="width:100%" id="TbListarVentas">
+            <thead>
+                <tr>
+                    <th>N° Boleta</th>
+                    <th>Nombre cliente</th>
+                    <th>Nombre Producto</th>
+                    <th>Fecha compra</th>
+                    <th>Cantidad</th>
+                    <th>Precio</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+@section JavaScript{
+    <script type="text/javascript" src="@Url.Content("~/Scripts/Producto/Ventas.js")"></script>
+}

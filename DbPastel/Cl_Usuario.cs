@@ -89,5 +89,18 @@ namespace DbPastel
             }
         }
 
+        public List<pa_ListarMisPedidos_Result> ListarMisPerdidos(int idUsuario)
+        {
+            try
+            {
+                var resp = modelo.pa_ListarMisPedidos(idUsuario).ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

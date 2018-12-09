@@ -90,6 +90,12 @@
     <Compile Include="pa_ListarCategoria_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="pa_ListarMisPedidos_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pa_ListarPedidos_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="pa_ListarProductoNoVigente_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
@@ -100,6 +106,9 @@
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="pa_ListarUsuario_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pa_ListarVentas_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="pa_Login_Result.cs">
@@ -123,10 +132,16 @@
     <Compile Include="pa_SubirUsuario_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="Pedido.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="Perfil.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Producto.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ProductoEstado.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -13,6 +13,9 @@
         <AssociationConnector Association="pasteleriaModel.FK_Usuario_Perfil" />
         <EntityTypeShape EntityType="pasteleriaModel.boleta" Width="1.5" PointX="5.75" PointY="1" />
         <AssociationConnector Association="pasteleriaModel.FK_boleta_Usuario" />
+        <EntityTypeShape EntityType="pasteleriaModel.Pedido" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="pasteleriaModel.ProductoEstado" Width="1.5" PointX="0.75" PointY="3.75" />
+        <AssociationConnector Association="pasteleriaModel.FK_boleta_Producto" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
