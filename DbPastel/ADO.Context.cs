@@ -334,6 +334,13 @@ public partial class pasteleriaEntities : DbContext
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ListarPedidos_Result>("pa_ListarPedidos");
     }
 
+
+    public virtual ObjectResult<pa_ObtenerCantidadProductosVendidos_Result> pa_ObtenerCantidadProductosVendidos()
+    {
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pa_ObtenerCantidadProductosVendidos_Result>("pa_ObtenerCantidadProductosVendidos");
+    }
+
 }
 
 }

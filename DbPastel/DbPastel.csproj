@@ -114,6 +114,9 @@
     <Compile Include="pa_Login_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>
+    <Compile Include="pa_ObtenerCantidadProductosVendidos_Result.cs">
+      <DependentUpon>ADO.tt</DependentUpon>
+    </Compile>
     <Compile Include="pa_ObtenerDatoCategoria_Result.cs">
       <DependentUpon>ADO.tt</DependentUpon>
     </Compile>

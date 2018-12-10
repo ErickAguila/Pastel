@@ -6,79 +6,72 @@
 
 <h2>Resumen</h2>
 
-<div style="width:400px;">
-    <canvas id="pieChart"></canvas>
+<div class="col-md-6" style="width: 400px;">
+    <label>Cantidad de producto vendidos</label>
+    <div class="chart-responsive">
+        <canvas id="chartBarProductos"></canvas>
+    </div>
 </div>
 
 
 @section JavaScript{
     <script>
-        var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-        var pieChart = new Chart(pieChartCanvas)
-        var PieData = [
-          {
-              value: 700,
-              color: '#f56954',
-              highlight: '#f56954',
-              label: 'Chrome'
-          },
-          {
-              value: 500,
-              color: '#00a65a',
-              highlight: '#00a65a',
-              label: 'IE'
-          },
-          {
-              value: 400,
-              color: '#f39c12',
-              highlight: '#f39c12',
-              label: 'FireFox'
-          },
-          {
-              value: 600,
-              color: '#00c0ef',
-              highlight: '#00c0ef',
-              label: 'Safari'
-          },
-          {
-              value: 300,
-              color: '#3c8dbc',
-              highlight: '#3c8dbc',
-              label: 'Opera'
-          },
-          {
-              value: 100,
-              color: '#d2d6de',
-              highlight: '#d2d6de',
-              label: 'Navigator'
-          }
-        ]
-        var pieOptions = {
-            //Boolean - Whether we should show a stroke on each segment
-            segmentShowStroke: true,
-            //String - The colour of each segment stroke
-            segmentStrokeColor: '#fff',
-            //Number - The width of each segment stroke
-            segmentStrokeWidth: 2,
-            //Number - The percentage of the chart that we cut out of the middle
-            percentageInnerCutout: 50, // This is 0 for Pie charts
-            //Number - Amount of animation steps
-            animationSteps: 100,
-            //String - Animation easing effect
-            animationEasing: 'easeOutBounce',
-            //Boolean - Whether we animate the rotation of the Doughnut
-            animateRotate: true,
-            //Boolean - Whether we animate scaling the Doughnut from the centre
-            animateScale: false,
-            //Boolean - whether to make the chart responsive to window resizing
-            responsive: true,
-            // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
-            maintainAspectRatio: true,
-            //String - A legend template
-            legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>'
+
+        $(document).ready(function () {
+            ChartBarProductos();
+        });
+
+        function aleatorio(inferior, superior) {
+            numPosibilidades = superior - inferior
+            aleat = Math.random() * numPosibilidades
+            aleat = Math.floor(aleat)
+            return parseInt(inferior) + aleat
         }
-        //Create pie or douhnut chart
-        // You can switch between pie and douhnut using the method below.
-        pieChart.Doughnut(PieData, pieOptions)
+
+
+        function dame_color_aleatorio() {
+            hexadecimal = new Array("0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F")
+            posarray = aleatorio(0, hexadecimal.length)
+            valor_hexadecimal_aleatorio = hexadecimal[posarray]
+            color_aleatorio = "#";
+            for (i = 0; i < 6; i++) {
+                posarray = aleatorio(0, hexadecimal.length)
+                color_aleatorio += hexadecimal[posarray]
+            }
+            return color_aleatorio
+        }
+
+        function ChartBarProductos() {
+            $.ajax({
+                dataType: "json",
+                type: "POST",
+                url: "/Producto/ObtenerCantidadProductoVendidos",
+                success: function (resultado) {
+                    var nombre = '';
+                    $.each(resultado, function (i, item) {
+                        if (i == 0) {
+                            nombre = nombre + '{ "value":"' + item.cantidad + '", "color":"' + dame_color_aleatorio() + '", "label":"' + item.nombre + '"}'
+                        } else {
+                            nombre = nombre + ',{ "value":"' + item.cantidad + '", "color":"' + dame_color_aleatorio() + '", "label":"' + item.nombre + '"}'
+                        }
+                    });
+                    var pieChartCanvas = $('#chartBarProductos').get(0).getContext('2d');
+                    var pieChart = new Chart(pieChartCanvas);
+                    var pieOptions = {
+                        segmentShowStroke: true,
+                        segmentStrokeColor: '#fff',
+                        segmentStrokeWidth: 1,
+                        percentageInnerCutout: 50,
+                        animationSteps: 100,
+                        animationEasing: 'easeOutBounce',
+                        animateRotate: true,
+                        responsive: true,
+                        legendTemplate: '<ul class=\'<%=name.toLowerCase()%>-legend\'><% for (var i=0; i<segments.length; i++){%><li><span style=\'background-color:<%=segments[i].fillColor%>\'></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+                        tooltipTemplate: '<%=label%>: <%=value %> '
+                    };
+                    pieChart.Doughnut($.parseJSON("[" + nombre + "]"), pieOptions);
+                }
+            });
+        }
     </script>
 }

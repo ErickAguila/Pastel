@@ -159,6 +159,7 @@
           <Parameter Name="email" Type="varchar" Mode="In" />
           <Parameter Name="pass" Type="varchar" Mode="In" />
         </Function>
+        <Function Name="pa_ObtenerCantidadProductosVendidos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pa_ObtenerDatoCategoria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="idCategoria" Type="int" Mode="In" />
         </Function>
@@ -328,6 +329,7 @@
           <Parameter Name="idUsuario" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pa_ListarPedidos" ReturnType="Collection(pasteleriaModel.pa_ListarPedidos_Result)" />
+          <FunctionImport Name="pa_ObtenerCantidadProductosVendidos" ReturnType="Collection(pasteleriaModel.pa_ObtenerCantidadProductosVendidos_Result)" />
         </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
@@ -529,6 +531,10 @@
           <Property Type="String" Name="fechaCompra" Nullable="true" MaxLength="4000" />
           <Property Type="Int32" Name="total" Nullable="true" />
           <Property Type="Int32" Name="idProductoEstado" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pa_ObtenerCantidadProductosVendidos_Result">
+          <Property Type="String" Name="nombre" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="cantidad" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -793,6 +799,14 @@
                 <ScalarProperty Name="fechaCompra" ColumnName="fechaCompra" />
                 <ScalarProperty Name="total" ColumnName="total" />
                 <ScalarProperty Name="idProductoEstado" ColumnName="idProductoEstado" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pa_ObtenerCantidadProductosVendidos" FunctionName="pasteleriaModel.Store.pa_ObtenerCantidadProductosVendidos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="pasteleriaModel.pa_ObtenerCantidadProductosVendidos_Result">
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

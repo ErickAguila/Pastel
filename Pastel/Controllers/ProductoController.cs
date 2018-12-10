@@ -217,5 +217,20 @@ namespace Pastel.Controllers
             }
         }
 
+        public String ObtenerCantidadProductoVendidos()
+        {
+            try
+            {
+                Cl_Producto producto = new Cl_Producto();
+                var lista = producto.ObtenesCantidadProductosVendidos();
+                return JsonConvert.SerializeObject(lista).ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+
     }
 }

@@ -168,5 +168,18 @@ namespace DbPastel
             }
         }
 
+        public List<pa_ObtenerCantidadProductosVendidos_Result> ObtenesCantidadProductosVendidos()
+        {
+            try
+            {
+                var resp = modelo.pa_ObtenerCantidadProductosVendidos().ToList();
+                return resp;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
