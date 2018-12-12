@@ -56,13 +56,17 @@ function ComprarProducto() {
             precio:precio
         },
         success: function (respuesta) {
-            swal({
-                title: 'Excelente!',
-                text: 'Compra realizada con éxito!',
-                icon: 'success'
-            }).then(function () {
-                window.location.reload();
-            });
+            if (respuesta == "no logeado") {
+                swal("Opps!", "Debe iniciar sesión para realizar la compra", "error");
+            } else {
+                swal({
+                    title: 'Excelente!',
+                    text: 'Compra realizada con éxito!',
+                    icon: 'success'
+                }).then(function () {
+                    window.location.reload();
+                });
+            }            
         },
         error: function (xhr, ajaxOptions, thrownError) {
             swal("Error detectado!", "Error al cargar los datos del producto", "error");

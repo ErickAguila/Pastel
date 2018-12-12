@@ -19,6 +19,10 @@
             font-family: 'Tangerine', cursive;
             font-size: 40px;
         }
+
+        .titulo-h2 {
+            font-family: 'Tangerine', cursive;
+        }
     </style>
 </head>
 
@@ -64,9 +68,7 @@
                                                 @{
                                                     if (ViewBag.idPerfilUsuario == "1")//Administrador
                                                     {
-                                                        <a class="dropdown-item" href="/Producto/MantenedorProducto">Productos</a>
-                                                        <a class="dropdown-item" href="/Usuario/MantenedorUsuario">Usuario</a>
-                                                        <a class="dropdown-item" href="#">Ventas</a>
+                                                        <a class="dropdown-item" href="/Home/Resumen">Administrar sitio</a>
                                                     }
                                                     if (ViewBag.idPerfilUsuario == "2") //Cliente
                                                     {
@@ -94,12 +96,13 @@
     </header>
     <!-- ***** Header Area End ***** -->
     <!-- ***** Breadcumb Area Start ***** -->
-    <div class="breadcumb-area bg-img bg-overlay" style="background-image: url(/Content/Template/img/producto-fondo.jpg)">
+    @*breadcumb-area bg-img bg-overlay*@
+    <div class="bg-img bg-overlay" style="background-image: url(/Content/Template/img/producto-fondo.jpg)">
         <div class="container h-100">
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcumb-content">
-                        <h2>Nuestros <br />productos</h2>
+                        <h2 class="titulo-h2" style="font-size: 80px;">Nuestros Productos</h2>
                     </div>
                 </div>
             </div>
@@ -112,7 +115,7 @@
             <div class="row">
                 <div class="col-2">
                     <div class="food-menu-title">
-                        <h2>Menu</h2>
+                        <h2>Productos</h2>
                     </div>
                 </div>
 
@@ -146,7 +149,7 @@
                                             <h4 id="txtNombreProcuto"></h4>
                                             <p id="txtDescProducto"></p>
                                             <label>Precio: <span id="txtPrecioProducto"></span></label><br />
-                                            <label>Cantidad: <input id="txtCantidad" type="number" class="form-control" value="1"/></label>
+                                            <label>Cantidad: <input id="txtCantidad" type="number" class="form-control" value="1" /></label>
                                             <label>Total: <span id="txtTotal"></span></label>
                                         </div>
                                     </div>

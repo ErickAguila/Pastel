@@ -180,8 +180,14 @@ namespace Pastel.Controllers
             {
                 Cl_Producto producto = new Cl_Producto();
                 int idUsuario = Convert.ToInt32(Session["idUsuario"]);
-                var resp = producto.CrearBoleta(idUsuario, idProducto, idCategoria, cantidad, precio);
-                return resp.ToString();
+                if (idUsuario == 0)
+                {
+                    return "no logeado";
+                }
+                else {
+                    var resp = producto.CrearBoleta(idUsuario, idProducto, idCategoria, cantidad, precio);
+                    return resp.ToString();
+                }                
             }
             catch (Exception ex)
             {

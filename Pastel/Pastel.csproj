@@ -268,6 +268,8 @@
     <Content Include="Content\Template\img\core-img\preload-2.png" />
     <Content Include="Content\Template\img\core-img\preload-3.png" />
     <Content Include="Content\Template\img\core-img\special-dots.png" />
+    <Content Include="Content\Template\img\cupcake.png" />
+    <Content Include="Content\Template\img\donas-sin-fondo.png" />
     <Content Include="Content\Template\img\donas.png" />
     <Content Include="Content\Template\img\icons\cancel.svg" />
     <Content Include="Content\Template\img\icons\email.svg" />
@@ -286,6 +288,7 @@
     <Content Include="Content\Template\img\testimonial-img\1.jpg" />
     <Content Include="Content\Template\img\testimonial-img\2.jpg" />
     <Content Include="Content\Template\img\testimonial-img\3.jpg" />
+    <Content Include="Content\Template\img\torta.jpg" />
     <Content Include="Content\Template\js\active.js" />
     <Content Include="Content\Template\js\bootstrap\bootstrap.min.js" />
     <Content Include="Content\Template\js\bootstrap\popper.min.js" />
