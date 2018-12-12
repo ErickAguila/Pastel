@@ -1,4 +1,5 @@
 ﻿var tablaVentas
+var total = 0;
 $(document).ready(function () {
     CargarDatosTablaVentas();
     $.fn.dataTable.ext.errMode = 'throw'
@@ -33,9 +34,15 @@ $(document).ready(function () {
             { "data": "fechaCompra", "sClass": "text-left" },
             { "data": "cantidad", "sClass": "text-left" },
             { "data": "precio", "sClass": "text-left" },
-            { "data": "total", "sClass": "text-left" }
+            {
+                "data": "total", fnCreatedCell: function (nTd, sData, oData, iRow, iCol) {
+                    $(nTd).html("<center>" + oData.total + "</center>");
+                    total += oData.total;
+                    $("#txtTotalVentas").html("$" + total);
+                }
+            }
         ]
-    });
+    });    
 });
 
 

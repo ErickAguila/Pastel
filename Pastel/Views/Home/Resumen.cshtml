@@ -6,13 +6,25 @@
 
 <h2>Resumen</h2>
 
-<div class="col-md-6" style="width: 400px;">
-    <label>Cantidad de producto vendidos</label>
-    <div class="chart-responsive">
-        <canvas id="chartBarProductos"></canvas>
+<div class="row">
+    <div class="col-md-6" style="width: 400px;">
+        <label>Cantidad de producto vendidos</label>
+        <div class="chart-responsive">
+            <canvas id="chartBarProductos"></canvas>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre Producto</th>
+                    <th>Cantidad vendidos</th>
+                </tr>
+            </thead>
+            <tbody id="lstProductosVendidos"></tbody>
+        </table>
     </div>
 </div>
-
 
 @section JavaScript{
     <script>
@@ -54,6 +66,7 @@
                         } else {
                             nombre = nombre + ',{ "value":"' + item.cantidad + '", "color":"' + dame_color_aleatorio() + '", "label":"' + item.nombre + '"}'
                         }
+                        $("#lstProductosVendidos").append("<tr><td>" + item.nombre + "</td><td><center>" + item.cantidad + "</center></td></tr>");
                     });
                     var pieChartCanvas = $('#chartBarProductos').get(0).getContext('2d');
                     var pieChart = new Chart(pieChartCanvas);
